@@ -60,6 +60,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControlCabinets.xaml.cs">
+      <DependentUpon>UserControlCabinets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlMedecins.xaml.cs">
+      <DependentUpon>UserControlMedecins.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlStats.xaml.cs">
+      <DependentUpon>UserControlStats.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlVisites.xaml.cs">
+      <DependentUpon>UserControlVisites.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlVisiteurs.xaml.cs">
+      <DependentUpon>UserControlVisiteurs.xaml</DependentUpon>
+    </Compile>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -80,6 +95,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControlCabinets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlMedecins.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlStats.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlVisites.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlVisiteurs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

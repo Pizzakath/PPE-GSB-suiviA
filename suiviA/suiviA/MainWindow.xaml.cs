@@ -55,6 +55,31 @@ namespace suiviA
             //    default:
             //        break;
             //}
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            {
+                case "ItemVisite":
+                    usc = new UserControlVisites();
+                    GridMain.Children.Add(usc);
+                    break;
+                case "ItemCabinet":
+                    usc = new UserControlCabinets();
+                    GridMain.Children.Add(usc);
+                    break;
+                case "ItemMedecin":
+                    usc = new UserControlMedecins();
+                    GridMain.Children.Add(usc);
+                    break;
+                case "ItemVisiteurs":
+                    usc = new UserControlVisiteurs();
+                    GridMain.Children.Add(usc);
+                    break;
+                case "ItemStats":
+                    usc = new UserControlStats();
+                    GridMain.Children.Add(usc);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
