@@ -4,9 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:suiviA"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Red">
-            
+    <Grid Background="GreenYellow">
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="127,31,0,0" TextWrapping="Wrap" Text="Liste des médecins :" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <ListView Name="MedicListView" HorizontalAlignment="Left" Height="Auto" Margin="127,74,0,0" VerticalAlignment="Top" Width="Auto" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nom"  DisplayMemberBinding="{Binding nom}"/>
+                    <GridViewColumn Header="Prenom"  DisplayMemberBinding="{Binding prenom}"/>
+                    <GridViewColumn Header="Adress"  DisplayMemberBinding="{Binding adresse}"/>
+                    <GridViewColumn Header="Ville"  DisplayMemberBinding="{Binding ville}"/>
+                    <GridViewColumn Header="CodePostal"  DisplayMemberBinding="{Binding CodePostal}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

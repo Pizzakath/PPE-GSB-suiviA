@@ -25,16 +25,17 @@ namespace suiviA
         }
 
         
-        Login login = new Login("Admin", "Admin0", 0);
+        Login login = new Login("Admin", "Admin0", 2);
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             string user = usernameTextBox.Text;
             string pass = passwordTextBox.Password;
+            
             if (login.IsLoggedIn(user, pass))
             {
                 MessageBox.Show("You are logged in successfully");
-                MainWindow mainWindow = new MainWindow();
+                MainWindow mainWindow = new MainWindow(login.Role);
 
                 mainWindow.Show();
                 Close();

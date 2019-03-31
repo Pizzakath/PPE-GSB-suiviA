@@ -20,9 +20,11 @@ namespace suiviA
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(int role)
         {
             InitializeComponent();
+            AfficherOnglets(role);
+            
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -41,20 +43,7 @@ namespace suiviA
         {
             UserControl usc = null;
             GridMain.Children.Clear();
-
-            //switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
-            //{
-            //    case "ItemHome":
-            //        usc = new UserControlHome();
-            //        GridMain.Children.Add(usc);
-            //        break;
-            //    case "ItemCreate":
-            //        usc = new UserControlCreate();
-            //        GridMain.Children.Add(usc);
-            //        break;
-            //    default:
-            //        break;
-            //}
+            
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "ItemVisite":
@@ -76,6 +65,27 @@ namespace suiviA
                 case "ItemStats":
                     usc = new UserControlStats();
                     GridMain.Children.Add(usc);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void AfficherOnglets(int role)
+        {
+            switch (role)
+            {
+                case 0:
+                    ItemMedecin.Visibility = Visibility.Collapsed;
+                    ItemCabinet.Visibility = Visibility.Collapsed;
+                    ItemVisiteurs.Visibility = Visibility.Collapsed;
+                    break;
+                case 1:
+                    ItemVisite.Visibility = Visibility.Collapsed;
+                    ItemVisiteurs.Visibility = Visibility.Collapsed;
+                    break;
+                case 2:
+                    ItemVisite.Visibility = Visibility.Collapsed;
                     break;
                 default:
                     break;

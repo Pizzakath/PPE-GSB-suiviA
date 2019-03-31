@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SqlRequest.cs" />
     <Compile Include="UserControlCabinets.xaml.cs">
       <DependentUpon>UserControlCabinets.xaml</DependentUpon>
     </Compile>
