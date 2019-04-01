@@ -45,10 +45,7 @@ namespace suiviA
                 new SqlRequest.Medecin("Jean", "TO")
             };
 
-            for(int i=0; i <= medicList.Count; i++)
-            {
-                MedicListView.Items.Add(medicList[i]);
-            }
+            
             
         }
 
