@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="suiviA.DialogHelper"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:suiviA"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="540" d:DesignWidth="1010">
+    <Grid Background="White">
+        <Grid Width="500">
+            <StackPanel>
+                <Label x:Name="AddVisitTitle" FontSize="24" Width="200" Margin="0,25,0,20">Ajouter une visite</Label>
+                <ComboBox materialDesign:HintAssist.Hint="Quel Médecin ?" Width="300" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBoxItem IsSelected="True">
+                        Medecin
+                    </ComboBoxItem>
+                </ComboBox>
+                <StackPanel Orientation="Horizontal" Margin="100,25,100,0">
+                    <DatePicker Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Date de Visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    <materialDesign:TimePicker Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure d'arrivée" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="100,25,100,20">
+                    <materialDesign:TimePicker Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Heure de Début" Style="{StaticResource MaterialDesignFloatingHintTimePicker}"/>
+                    <materialDesign:TimePicker Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure de Fin" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0"/>
+                </StackPanel>
+                <ComboBox materialDesign:HintAssist.Hint="Visite sur rendez-vous ?" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="100,10,269,0">
+                    <ComboBoxItem IsSelected="True">
+                        Oui
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Non
+                    </ComboBoxItem>
+                </ComboBox>
+                <!--BOUTONS-->
+                <StackPanel Width="300" Orientation="Horizontal" Margin="100,30" Height="50">
+                    <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Retour"/>
+                    <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Ajouter"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -4,9 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:suiviA"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Black">
-            
+             d:DesignHeight="540" d:DesignWidth="1010">
+    <Grid Background="WhiteSmoke">
+        <materialDesign:DialogHost x:Name="VisitDialog" IsOpen="False" CloseOnClickAway="True">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Margin="20,0,20,10">
+                <TextBox x:Name="AddVisitTitle" FontSize="24" Width="300">Ajouter une visite</TextBox>
+                    <ComboBox materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem IsSelected="True">
+                            Apple
+                        </ComboBoxItem>
+                    </ComboBox>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Margin="0,31,286,34" Height="Auto" Width="74">
+                            Retour
+                        </Button>
+                        <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" Margin="0,31,123,34" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="79">
+                            Ajouter
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
     </Grid>
 </UserControl>

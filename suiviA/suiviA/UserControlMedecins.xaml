@@ -23,49 +23,38 @@
         
         <materialDesign:DialogHost IsOpen="false" CloseOnClickAway="True">
             <materialDesign:DialogHost.DialogContent >
-        <Grid Margin="255,70,308,87">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="96*" />
-                <RowDefinition Height="96*" />
-                <RowDefinition Height="83*" />
-                <RowDefinition Height="108*" />
-            </Grid.RowDefinitions>
-            <TextBlock x:Name="TitreAjoutMedecin" Margin="0 6 0 0" FontSize="24" Grid.Row="0">Ajouter un médecin</TextBlock>
-            <TextBox x:Name="NouveauMedecinTextBox" materialDesign:HintAssist.Hint="Nom" Margin="10,51,286,10">
-                <TextBox.Text>Nom
-                    <!--<Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain" />
-                        </Binding.ValidationRules>
-                    </Binding>-->
-                </TextBox.Text>
-            </TextBox>
-            <TextBox x:Name="NouveauMedecinPrenomTextBox" materialDesign:HintAssist.Hint="Prenom" Margin="245,51,51,10">
-                <TextBox.Text>Prenom
-                    <!--<Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain" />
-                        </Binding.ValidationRules>
-                    </Binding>-->
-                </TextBox.Text>
-            </TextBox>
-            <TextBox x:Name="NouveauMedecinAdresseTextBox" materialDesign:HintAssist.Hint="Prenom" Margin="10,25,286,36" Grid.Row="1">
-                <TextBox.Text>Adresse
-                    <!--<Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain" />
-                        </Binding.ValidationRules>
-                    </Binding>-->
-                </TextBox.Text>
-            </TextBox>
-            <Button Grid.Row="3"  IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}"  HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Margin="0,31,286,34" Height="Auto" Width="74">
-                Retour
-            </Button>
-            <Button Grid.Row="3"  IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}"  HorizontalAlignment="Right" Margin="0,31,123,34" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="79">
-                Ajouter
-            </Button>
-        </Grid>
-        </materialDesign:DialogHost.DialogContent>
+                <Grid Width="500">
+                    <StackPanel>
+                        <Label x:Name="AddVisitTitle" FontSize="24" Width="200" Margin="0,25,0,20" HorizontalAlignment="Center">Ajouter une visite</Label>
+                        <ComboBox materialDesign:HintAssist.Hint="Quel Médecin ?" Width="300" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True">
+                                Medecin
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal" Margin="100,25,100,0">
+                            <DatePicker Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Date de Visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                            <materialDesign:TimePicker Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure d'arrivée" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="100,25,100,20">
+                            <materialDesign:TimePicker Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Heure de Début" Style="{StaticResource MaterialDesignFloatingHintTimePicker}"/>
+                            <materialDesign:TimePicker Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure de Fin" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0"/>
+                        </StackPanel>
+                        <ComboBox materialDesign:HintAssist.Hint="Visite sur rendez-vous ?" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="100,10,269,0">
+                            <ComboBoxItem IsSelected="True">
+                                Oui
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Non
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <!--BOUTONS-->
+                        <StackPanel Width="300" Orientation="Horizontal" Margin="100,30" Height="50">
+                            <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Retour"/>
+                            <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Ajouter"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
             <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                             ToolTip="MaterialDesignFloatingActionLightButton" Margin="913,448,41,36" Background="#FF557FF0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                 <Button.BorderBrush>
