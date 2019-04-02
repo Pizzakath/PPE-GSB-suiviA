@@ -78,9 +78,6 @@
     <Compile Include="UserControlVisites.xaml.cs">
       <DependentUpon>UserControlVisites.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControlVisiteurs.xaml.cs">
-      <DependentUpon>UserControlVisiteurs.xaml</DependentUpon>
-    </Compile>
     <Page Include="DialogHelper.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,10 +115,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlVisites.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControlVisiteurs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

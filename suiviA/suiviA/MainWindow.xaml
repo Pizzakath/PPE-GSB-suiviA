@@ -76,12 +76,18 @@
                 </Grid>
 
                 <ListView x:Name="ListViewMenu" Foreground="#FF5C99D6" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged" >
-                    <ListViewItem x:Name="ItemHome" Height="60">
+                    <ListViewItem x:Name="ItemStats" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ChartAreaspline" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Stats" VerticalAlignment="Center"  Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <!--<ListViewItem x:Name="ItemHome" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
-                    </ListViewItem>
+                    </ListViewItem>-->
                     <ListViewItem x:Name="ItemVisite" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Eye" Height="25" Width="25" Margin="10"/>
@@ -100,18 +106,7 @@
                             <TextBlock Text="Médecins" VerticalAlignment="Center"  Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="ItemVisiteurs" Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="HumanGreeting" Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="Visiteurs" VerticalAlignment="Center"  Margin="20 10"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem x:Name="ItemStats" Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ChartAreaspline" Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="Stats" VerticalAlignment="Center"  Margin="20 10"/>
-                        </StackPanel>
-                    </ListViewItem>
+                    
                 </ListView>
             </StackPanel>
         </Grid>

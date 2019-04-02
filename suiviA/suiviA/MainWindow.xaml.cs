@@ -23,8 +23,9 @@ namespace suiviA
         public MainWindow(int role)
         {
             InitializeComponent();
+            GridMain.Children.Add(new UserControlStats());
             //AfficherOnglets(role);
-            
+
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -58,15 +59,13 @@ namespace suiviA
                     usc = new UserControlMedecins();
                     GridMain.Children.Add(usc);
                     break;
-                case "ItemVisiteurs":
-                    usc = new UserControlVisiteurs();
-                    GridMain.Children.Add(usc);
-                    break;
                 case "ItemStats":
                     usc = new UserControlStats();
                     GridMain.Children.Add(usc);
                     break;
                 default:
+                    usc = new UserControlStats();
+                    GridMain.Children.Add(usc);
                     break;
             }
         }
@@ -78,11 +77,9 @@ namespace suiviA
                 case 0:
                     ItemMedecin.Visibility = Visibility.Collapsed;
                     ItemCabinet.Visibility = Visibility.Collapsed;
-                    ItemVisiteurs.Visibility = Visibility.Collapsed;
                     break;
                 case 1:
                     ItemVisite.Visibility = Visibility.Collapsed;
-                    ItemVisiteurs.Visibility = Visibility.Collapsed;
                     break;
                 case 2:
                     ItemVisite.Visibility = Visibility.Collapsed;
