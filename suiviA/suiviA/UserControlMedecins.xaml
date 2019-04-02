@@ -8,47 +8,39 @@
              mc:Ignorable="d" 
              d:DesignHeight="540" d:DesignWidth="1010">
     <Grid Background="WhiteSmoke">
-        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="112,27,432,469">Liste des Médecins :</TextBlock>
-        <ListView Name="MedicListView" HorizontalAlignment="Left" Height="41" Margin="112,76,0,0" VerticalAlignment="Top" Width="622" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Nom"  DisplayMemberBinding="{Binding nom}"/>
-                    <GridViewColumn Header="Prenom"  DisplayMemberBinding="{Binding prenom}"/>
-                    <GridViewColumn Header="Adresse"  DisplayMemberBinding="{Binding adresse}"/>
-                    <GridViewColumn Header="Ville"  DisplayMemberBinding="{Binding ville}"/>
-                    <GridViewColumn Header="CodePostal"  DisplayMemberBinding="{Binding CodePostal}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        
-        <materialDesign:DialogHost IsOpen="false" CloseOnClickAway="True">
+        <StackPanel>
+            <Label Content="Liste des Médecins" FontSize="24" Foreground="#DD040ED7" FontWeight="Bold" Margin="459,20,329.6,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <StackPanel>
+                <ListView Name="VisitListView" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Width="660" Margin="210,0,0,0" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Nom"  DisplayMemberBinding="{Binding nom}"/>
+                            <GridViewColumn Header="Prenom"  DisplayMemberBinding="{Binding prenom}"/>
+                            <GridViewColumn Header="Cabinet"  DisplayMemberBinding="{Binding cabinet}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+
+
+        <materialDesign:DialogHost IsOpen="False" CloseOnClickAway="True">
             <materialDesign:DialogHost.DialogContent >
-                <Grid Width="500">
+                <Grid Width="300" Height="275">
                     <StackPanel>
-                        <Label x:Name="AddVisitTitle" FontSize="24" Width="200" Margin="0,25,0,20" HorizontalAlignment="Center">Ajouter une visite</Label>
-                        <ComboBox materialDesign:HintAssist.Hint="Quel Médecin ?" Width="300" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <Label x:Name="AddDoctorTitle" FontSize="24" Width="220" Margin="0,25,0,20" Content="Ajouter un Médecin"/>
+                        <ComboBox materialDesign:HintAssist.Hint="Quel Cabinet ?" Width="250" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                             <ComboBoxItem IsSelected="True">
-                                Medecin
+                                Adresse du Cabinet
                             </ComboBoxItem>
                         </ComboBox>
-                        <StackPanel Orientation="Horizontal" Margin="100,25,100,0">
-                            <DatePicker Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Date de Visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                            <materialDesign:TimePicker Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure d'arrivée" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0" />
+                        <StackPanel Orientation="Horizontal" Margin="5,25,5,0">
+                            <TextBox Name="nomMedecinTextBox" materialDesign:HintAssist.Hint="Nom" MaxWidth="131" Width="131" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4"/>
+                            <TextBox x:Name="prenomMedecinTextBox" Margin="20,0,0,0" MaxWidth="131" Width="131" materialDesign:HintAssist.Hint="Prenom" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="100,25,100,20">
-                            <materialDesign:TimePicker Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Heure de Début" Style="{StaticResource MaterialDesignFloatingHintTimePicker}"/>
-                            <materialDesign:TimePicker Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure de Fin" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0"/>
-                        </StackPanel>
-                        <ComboBox materialDesign:HintAssist.Hint="Visite sur rendez-vous ?" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="100,10,269,0">
-                            <ComboBoxItem IsSelected="True">
-                                Oui
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Non
-                            </ComboBoxItem>
-                        </ComboBox>
+
                         <!--BOUTONS-->
-                        <StackPanel Width="300" Orientation="Horizontal" Margin="100,30" Height="50">
+                        <StackPanel Orientation="Horizontal" Margin="0,30,0,30" Height="50">
                             <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Retour"/>
                             <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Ajouter"/>
                         </StackPanel>
@@ -57,16 +49,11 @@
             </materialDesign:DialogHost.DialogContent>
             <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                             ToolTip="MaterialDesignFloatingActionLightButton" Margin="913,448,41,36" Background="#FF557FF0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
-                <Button.BorderBrush>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FF557FF0" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.BorderBrush>
+
                 <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
             </Button>
         </materialDesign:DialogHost>
-        
-        
+
+
     </Grid>
 </UserControl>

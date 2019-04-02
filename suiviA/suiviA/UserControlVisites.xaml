@@ -6,27 +6,67 @@
              xmlns:local="clr-namespace:suiviA"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="540" d:DesignWidth="1010">
+       d:DesignHeight="540" d:DesignWidth="1010">
     <Grid Background="WhiteSmoke">
-        <materialDesign:DialogHost x:Name="VisitDialog" IsOpen="False" CloseOnClickAway="True">
-            <materialDesign:DialogHost.DialogContent>
-                <StackPanel Margin="20,0,20,10">
-                <TextBox x:Name="AddVisitTitle" FontSize="24" Width="300">Ajouter une visite</TextBox>
-                    <ComboBox materialDesign:HintAssist.Hint="Search" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                        <ComboBoxItem IsSelected="True">
-                            Apple
-                        </ComboBoxItem>
-                    </ComboBox>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Margin="0,31,286,34" Height="Auto" Width="74">
-                            Retour
-                        </Button>
-                        <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" Margin="0,31,123,34" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="79">
-                            Ajouter
-                        </Button>
+        <StackPanel>
+            <Label Content="Liste des Visites" FontSize="24" Foreground="#DD040ED7" FontWeight="Bold" Margin="459,20,363.6,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <StackPanel>
+                <ListView Name="VisitListView" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Width="660" Margin="210,0,0,0" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Nom"  DisplayMemberBinding="{Binding nom}"/>
+                            <GridViewColumn Header="Prenom"  DisplayMemberBinding="{Binding prenom}"/>
+                            <GridViewColumn Header="Adresse"  DisplayMemberBinding="{Binding adresse}"/>
+                            <GridViewColumn Header="Ville"  DisplayMemberBinding="{Binding ville}"/>
+                            <GridViewColumn Header="CodePostal"  DisplayMemberBinding="{Binding CodePostal}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+        
+
+        <materialDesign:DialogHost IsOpen="False" CloseOnClickAway="True">
+            <materialDesign:DialogHost.DialogContent >
+                <Grid Width="300" Height="400">
+                    <StackPanel>
+                        <Label x:Name="AddVisitTitle" FontSize="24" Width="200" Margin="0,25,0,20">Ajouter une visite</Label>
+                        <ComboBox materialDesign:HintAssist.Hint="Quel Médecin ?" Width="250" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True">
+                                Medecin
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal" Margin="5,25,5,0">
+                            <DatePicker Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Date de Visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Language="Fr" />
+                            <materialDesign:TimePicker Is24Hours="True" Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure d'arrivée" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,25,5,20">
+                            <materialDesign:TimePicker Is24Hours="True" Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Heure de Début" Style="{StaticResource MaterialDesignFloatingHintTimePicker}"/>
+                            <materialDesign:TimePicker  Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure de Fin" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0"/>
+                        </StackPanel>
+                        <ComboBox materialDesign:HintAssist.Hint="Visite sur rendez-vous ?" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="5,10,175.4,0">
+                            <ComboBoxItem IsSelected="True">
+                                Oui
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Non
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <!--BOUTONS-->
+                        <StackPanel Orientation="Horizontal" Margin="0,30,0,30" Height="50">
+                            <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Retour"/>
+                            <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Ajouter"/>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
+                </Grid>
             </materialDesign:DialogHost.DialogContent>
+            <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                            ToolTip="MaterialDesignFloatingActionLightButton" Margin="913,448,41,36" Background="#FF557FF0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                
+                            <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
+            </Button>
         </materialDesign:DialogHost>
+
+
     </Grid>
 </UserControl>

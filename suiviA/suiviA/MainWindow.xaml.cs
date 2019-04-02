@@ -23,7 +23,7 @@ namespace suiviA
         public MainWindow(int role)
         {
             InitializeComponent();
-            AfficherOnglets(role);
+            //AfficherOnglets(role);
             
         }
 
