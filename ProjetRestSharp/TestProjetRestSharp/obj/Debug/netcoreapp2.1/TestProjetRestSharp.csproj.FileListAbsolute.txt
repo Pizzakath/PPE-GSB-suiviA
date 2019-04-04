@@ -1,0 +1,17 @@
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\bin\Debug\netcoreapp2.1\TestProjetRestSharp.deps.json
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\bin\Debug\netcoreapp2.1\TestProjetRestSharp.runtimeconfig.json
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\bin\Debug\netcoreapp2.1\TestProjetRestSharp.runtimeconfig.dev.json
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\bin\Debug\netcoreapp2.1\TestProjetRestSharp.dll
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\obj\Debug\netcoreapp2.1\TestProjetRestSharp.csprojAssemblyReference.cache
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\obj\Debug\netcoreapp2.1\TestProjetRestSharp.csproj.CoreCompileInputs.cache
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\obj\Debug\netcoreapp2.1\TestProjetRestSharp.AssemblyInfoInputs.cache
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\obj\Debug\netcoreapp2.1\TestProjetRestSharp.AssemblyInfo.cs
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\bin\Debug\netcoreapp2.1\TestProjetRestSharp.pdb
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\bin\Debug\netcoreapp2.1\ProjetRestSharp.dll
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\bin\Debug\netcoreapp2.1\ProjetRestSharp.pdb
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\obj\Debug\netcoreapp2.1\TestProjetRestSharp.csproj.CopyComplete
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\obj\Debug\netcoreapp2.1\TestProjetRestSharp.dll
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\TestProjetRestSharp\obj\Debug\netcoreapp2.1\TestProjetRestSharp.pdb

@@ -1,0 +1,9 @@
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\ProjetRestSharp\bin\Debug\netstandard2.0\ProjetRestSharp.deps.json
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\ProjetRestSharp\bin\Debug\netstandard2.0\ProjetRestSharp.dll
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\ProjetRestSharp\obj\Debug\netstandard2.0\ProjetRestSharp.csprojAssemblyReference.cache
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\ProjetRestSharp\obj\Debug\netstandard2.0\ProjetRestSharp.csproj.CoreCompileInputs.cache
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\ProjetRestSharp\obj\Debug\netstandard2.0\ProjetRestSharp.AssemblyInfoInputs.cache
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\ProjetRestSharp\obj\Debug\netstandard2.0\ProjetRestSharp.AssemblyInfo.cs
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\ProjetRestSharp\bin\Debug\netstandard2.0\ProjetRestSharp.pdb
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\ProjetRestSharp\obj\Debug\netstandard2.0\ProjetRestSharp.dll
+C:\Users\Emilien\Documents\travail\PPE SLAM\PPE-GSB-suiviA\ProjetRestSharp\ProjetRestSharp\obj\Debug\netstandard2.0\ProjetRestSharp.pdb
