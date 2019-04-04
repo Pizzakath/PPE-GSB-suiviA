@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using suiviA.Commands;
 
 namespace suiviA
 {
@@ -24,7 +25,31 @@ namespace suiviA
         public UserControlMedecins()
         {
             InitializeComponent();
+
+            UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
+            Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll();
+            afficherListe(listeMedecins);
+
         }
+
+        public void afficherListe( Utilisateurs listeMedecins)
+        {
+            if(listeMedecins.ListeUtilisateurs != null)
+            {
+                foreach(Utilisateur el in listeMedecins.ListeUtilisateurs)
+                {
+                    DoctorListView.Items.Add(new Utilisateur(
+                        el.nom, 
+                        el.prenom, 
+                        el.identifiant, 
+                        el.password, 
+                        el.telephone, 
+                        el.mail, 
+                        int.Parse(el.type.ToString())));
+                }
+            }
+        }
+
 
     }
 }

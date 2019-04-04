@@ -62,7 +62,8 @@ namespace suiviA.Commands
 
     public class Visites
     {
+        // J'ai ajouté PUBLIC ;)
         [DeserializeAs(Name = "data")]
-        List<Visite> ListeVisites { get; set; }
+        public List<Visite> ListeVisites { get; set; }
     }
 }

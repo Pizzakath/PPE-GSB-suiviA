@@ -1,4 +1,5 @@
-﻿using System;
+﻿using suiviA.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,31 @@ namespace suiviA
         public UserControlVisites()
         {
             InitializeComponent();
+
+            VisiteRepository repoUtilisateur = new VisiteRepository();
+            // TODO: id visiteur rentré en dur, il faudra le changer en fonction de son id (Cf. Auth)
+            Visites listeVisites = repoUtilisateur.GetVisiteAllByIdVisiteur(4);
+            afficherListe(listeVisites);
+
+        }
+
+        public void afficherListe(Visites listeVisites)
+        {
+            {
+                foreach (Visite el in listeVisites.ListeVisites)
+                {
+                    VisitListView.Items.Add(new Visite(
+                        el.id,
+                        el.idVisiteur,
+                        el.idMedecin,
+                        DateTime.Parse(el.date.ToString()),
+                        bool.Parse(el.surRDV.ToString()),
+                        DateTime.Parse(el.heureArrivee.ToString()),
+                        DateTime.Parse(el.heureDebut.ToString()),
+                        DateTime.Parse(el.heureDepart.ToString()))
+                        );
+                }
+            
         }
     }
 }

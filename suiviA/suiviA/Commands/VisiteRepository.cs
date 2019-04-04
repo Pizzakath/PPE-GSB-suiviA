@@ -29,6 +29,14 @@ namespace suiviA.Commands
             return truc.Data;
         }
 
+        public Visites GetVisiteAllByIdVisiteur(int id)
+        {
+            RestRequest req = new RestRequest("api/visiteurs/visites/{id}");
+            req.AddUrlSegment("id", id);
+            var truc = restClient.Get<Visites>(req);
+            return truc.Data;
+        }
+
         public void CreateVisite(Visite visite)
         {
             RestRequest req = new RestRequest("api/visites", Method.POST);

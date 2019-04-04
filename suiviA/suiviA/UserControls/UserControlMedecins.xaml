@@ -11,12 +11,13 @@
         <StackPanel>
             <Label Content="Liste des Médecins" FontSize="24" Foreground="#FF1976D2" FontWeight="Bold" Margin="459,20,329.6,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <StackPanel>
-                <ListView x:Name="DoctorListView" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" MinWidth="660" MaxWidth="660" Margin="210,0,0,0" >
+                <ListView x:Name="DoctorListView" HorizontalAlignment="Left" Height="478" VerticalAlignment="Top" MinWidth="660" MaxWidth="660" Margin="210,0,0,0" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Nom"  DisplayMemberBinding="{Binding nom}"/>
                             <GridViewColumn Header="Prenom"  DisplayMemberBinding="{Binding prenom}"/>
-                            <GridViewColumn Header="Cabinet"  DisplayMemberBinding="{Binding cabinet}"/>
+                            <GridViewColumn Header="mail"  DisplayMemberBinding="{Binding mail}"/>
+                            <GridViewColumn Header="telephone"  DisplayMemberBinding="{Binding telephone}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

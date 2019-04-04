@@ -69,7 +69,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\Cabinet.cs" />
+    <Compile Include="Commands\CabinetRepository.cs" />
+    <Compile Include="Commands\ClientRestSHarp.cs" />
+    <Compile Include="Commands\ConnexionActive.cs" />
+    <Compile Include="Commands\Departement.cs" />
+    <Compile Include="Commands\DepartementRepository.cs" />
     <Compile Include="Commands\Utilisateur.cs" />
+    <Compile Include="Commands\UtilisateurRepository.cs" />
+    <Compile Include="Commands\Visite.cs" />
+    <Compile Include="Commands\VisiteRepository.cs" />
     <Compile Include="DialogHelper.xaml.cs">
       <DependentUpon>DialogHelper.xaml</DependentUpon>
     </Compile>
