@@ -106,6 +106,12 @@
                             <TextBlock Text="Médecins" VerticalAlignment="Center"  Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
+                    <ListViewItem x:Name="ItemAffectation" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AccountHeart" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Affecter" VerticalAlignment="Center"  Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
                     
                 </ListView>
             </StackPanel>

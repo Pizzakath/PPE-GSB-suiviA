@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using suiviA.UserControls;
 
 namespace suiviA
 {
@@ -61,6 +62,10 @@ namespace suiviA
                     break;
                 case "ItemStats":
                     usc = new UserControlStats();
+                    GridMain.Children.Add(usc);
+                    break;
+                case "ItemAffectation":
+                    usc = new UserControlAffectation();
                     GridMain.Children.Add(usc);
                     break;
                 default:

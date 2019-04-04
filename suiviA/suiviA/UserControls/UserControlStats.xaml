@@ -9,7 +9,7 @@
              d:DesignHeight="540" d:DesignWidth="1010">
     <Grid Background="White">
         <StackPanel>
-            <Label Content="Statistiques" FontSize="24" Foreground="#DD040ED7" FontWeight="Bold" Margin="504,20,364.6,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Content="Statistiques" FontSize="24" Foreground="#FF1976D2" FontWeight="Bold" Margin="504,20,364.6,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
                 <ComboBox materialDesign:HintAssist.Hint="Quel Médecin ?" Width="150" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="220,0,0,0" VerticalAlignment="Bottom" Foreground="Black">
                     <ComboBoxItem IsSelected="True">
@@ -29,7 +29,7 @@
                 <DatePicker Width="131" materialDesign:HintAssist.Hint="Jour de visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="50,0,0,0" VerticalAlignment="Bottom" Language="Fr" />
                 <Label Content="Nombre de visites par visiteur par jour : ?" Height="24" VerticalAlignment="Bottom" Margin="50,0,0,0" />
             </StackPanel>
-            <Label Content="Temps d'attente moyen d'un entretien : ?" Height="24" VerticalAlignment="Bottom" Margin="220,40,0,0" />
+            <Label Content="Temps moyen d'un entretien : ?" Height="24" VerticalAlignment="Bottom" Margin="220,40,0,0" />
             <Label Content="Nombre de visites par visiteur par jour : ?" Height="24" VerticalAlignment="Bottom" Margin="220,40,0,0" />
             <Label Content="Temps d'attente moyen : ?" Height="24" VerticalAlignment="Bottom" Margin="220,40,0,0" />
             
