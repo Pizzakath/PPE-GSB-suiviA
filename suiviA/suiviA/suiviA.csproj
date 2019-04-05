@@ -75,6 +75,8 @@
     <Compile Include="Commands\ConnexionActive.cs" />
     <Compile Include="Commands\Departement.cs" />
     <Compile Include="Commands\DepartementRepository.cs" />
+    <Compile Include="Commands\StatRequest.cs" />
+    <Compile Include="Commands\StatRequestRepository.cs" />
     <Compile Include="Commands\Utilisateur.cs" />
     <Compile Include="Commands\UtilisateurRepository.cs" />
     <Compile Include="Commands\Visite.cs" />
