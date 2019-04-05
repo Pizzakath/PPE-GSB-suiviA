@@ -40,8 +40,8 @@ namespace suiviA.UserControls
 
         public void afficherMedecins(Utilisateurs listeMedecins, Utilisateurs listeVisiteurs)
         {
-            if ((listeMedecins.ListeUtilisateurs != null) || (listeVisiteurs.ListeUtilisateurs != null))
-            {
+            //if ((listeMedecins.ListeUtilisateurs != null) || (listeVisiteurs.ListeUtilisateurs != null))
+            //{
                 foreach (Utilisateur el in listeMedecins.ListeUtilisateurs)
                 {
                     DoctorComboBox.Items.Add(new Utilisateur(
@@ -68,7 +68,7 @@ namespace suiviA.UserControls
                         int.Parse(el.type.ToString())))
                         .ToString();
                 }
-            }
+            //}
         }
 
         private void DebutPeriodeDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

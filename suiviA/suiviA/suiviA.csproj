@@ -84,7 +84,6 @@
     <Compile Include="DialogHelper.xaml.cs">
       <DependentUpon>DialogHelper.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SqlRequest.cs" />
     <Compile Include="UserControls\UserControlAffectation.xaml.cs">
       <DependentUpon>UserControlAffectation.xaml</DependentUpon>
     </Compile>

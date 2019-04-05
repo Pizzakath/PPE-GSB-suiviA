@@ -46,6 +46,7 @@ namespace suiviA
             else
             {
                 MessageBox.Show("Adrien est pd car Utilisateur est NULL");
+                
             }
 
             //if (login.IsLoggedIn(user, pass))
