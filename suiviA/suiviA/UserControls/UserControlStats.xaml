@@ -11,20 +11,16 @@
         <StackPanel>
             <Label Content="Statistiques" FontSize="24" Foreground="#FF1976D2" FontWeight="Bold" Margin="504,20,364.6,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
-                <ComboBox materialDesign:HintAssist.Hint="Quel Médecin ?" Width="150" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="220,0,0,0" VerticalAlignment="Bottom" Foreground="Black">
-                    <ComboBoxItem IsSelected="True">
-                        Medecin
-                    </ComboBoxItem>
+                <ComboBox x:Name="DoctorComboBox" materialDesign:HintAssist.Hint="Quel Médecin ?" Width="150" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="220,0,0,0" VerticalAlignment="Bottom" Foreground="Black">
+                    
                 </ComboBox>
                 <DatePicker Width="131" materialDesign:HintAssist.Hint="Début de période" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="50,0,0,0" VerticalAlignment="Bottom" Language="Fr" />
                 <DatePicker Width="131" materialDesign:HintAssist.Hint="Fin de période" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="50,0,0,0" VerticalAlignment="Bottom" Language="Fr" />
                 <Label Content="Nombre de visites : ?" Height="24" VerticalAlignment="Bottom" Margin="50,0,0,0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
-                <ComboBox materialDesign:HintAssist.Hint="Quel Visiteur ?" Width="150" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="220,0,0,0" VerticalAlignment="Bottom" Foreground="Black">
-                    <ComboBoxItem IsSelected="True">
-                        Medecin
-                    </ComboBoxItem>
+                <ComboBox x:Name="VisiteurComboBox" materialDesign:HintAssist.Hint="Quel Visiteur ?" Width="150" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="220,0,0,0" VerticalAlignment="Bottom" Foreground="Black">
+                    
                 </ComboBox>
                 <DatePicker Width="131" materialDesign:HintAssist.Hint="Jour de visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="50,0,0,0" VerticalAlignment="Bottom" Language="Fr" />
                 <Label Content="Nombre de visites par visiteur par jour : ?" Height="24" VerticalAlignment="Bottom" Margin="50,0,0,0" />

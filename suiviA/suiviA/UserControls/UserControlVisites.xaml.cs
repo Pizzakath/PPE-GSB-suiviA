@@ -49,7 +49,6 @@ namespace suiviA
                         DateTime.Parse(el.heureDepart.ToString()))
                         );
                 }
-
             }
         }
     }

@@ -76,6 +76,11 @@ namespace suiviA.Commands
                 + " identifiant: " + identifiant + " password: " + password + " telephone: " + telephone
                 + " mail: " + mail + " type: " + type);
         }
+
+        public override string ToString()
+        {
+            return this.nom + " " + this.prenom;
+        }
     }
 
 
