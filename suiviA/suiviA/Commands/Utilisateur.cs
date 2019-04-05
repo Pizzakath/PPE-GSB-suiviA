@@ -6,6 +6,18 @@ using RestSharp.Deserializers;
 
 namespace suiviA.Commands
 {
+    public class UserConnexion
+    {
+        public string identifiant { get; set; }
+        public string mdp { get; set; }
+
+        public UserConnexion(string identifiant, string mdp)
+        {
+            this.identifiant = identifiant;
+            this.mdp = mdp;
+        }
+    }
+
     public class UtilisateurData
     {
         [DeserializeAs(Name = "data")]
@@ -38,6 +50,9 @@ namespace suiviA.Commands
         [DeserializeAs(Name = "type")]
         public int type { get; set; }
 
+        [DeserializeAs(Name ="token")]
+        public string token { get; }
+
         public Utilisateur()
         {
 
@@ -68,6 +83,20 @@ namespace suiviA.Commands
             this.telephone = telephone;
             this.mail = mail;
             this.type = type;
+        }
+
+        public Utilisateur(int id, string nom, string prenom, string identifiant, string password,
+string telephone, string mail, int type, string token)
+        {
+            this.id = id;
+            this.nom = nom;
+            this.prenom = prenom;
+            this.identifiant = identifiant;
+            this.password = password;
+            this.telephone = telephone;
+            this.mail = mail;
+            this.type = type;
+            this.token = token;
         }
 
         public void afficher()

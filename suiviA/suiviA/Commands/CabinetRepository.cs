@@ -23,32 +23,38 @@ namespace suiviA.Commands
 
 
 
-        public Cabinets GetAll()
+        public Cabinets GetAll(Utilisateur uCo)
         {
-            return restClient.Get<Cabinets>(new RestRequest("/api/cabinets")).Data;
+            RestRequest req = new RestRequest("/api/cabinets/{token}");
+            req.AddUrlSegment("token", uCo.token);
+            return restClient.Get<Cabinets>(req).Data;
+
         }
 
-        public void SetMedecinCabinet(int idMedecin, int idCabinet)
+        public void SetMedecinCabinet(int idMedecin, int idCabinet, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("/api/medecins/cabinets{idCabinet}", Method.POST);
+            RestRequest req = new RestRequest("/api/medecins/cabinets/{token}/{idCabinet}", Method.POST);
             req.RequestFormat = DataFormat.Json;
+            req.AddUrlSegment("token", uCo.token);
             req.AddJsonBody(JsonConvert.SerializeObject(idMedecin));
             restClient.Execute(req);
         }
 
-        public void CreateCabinet(Cabinet cabinet)
+        public void CreateCabinet(Cabinet cabinet, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/cabinets", Method.POST);
+            RestRequest req = new RestRequest("api/cabinets/{token}", Method.POST);
             req.RequestFormat = DataFormat.Json;
+            req.AddUrlSegment("token", uCo.token);
             req.AddJsonBody(JsonConvert.SerializeObject(cabinet));
             restClient.Execute(req);
         }
 
-        public Cabinet GetCabinetByIdMedecin(int id)
+        public Cabinet GetCabinetByIdMedecin(int id, Utilisateur uCo)
         {
             // Id du medecin
-            RestRequest req = new RestRequest("/api/cabinets/{id}");
+            RestRequest req = new RestRequest("/api/cabinets/{token}/{id}");
             req.AddUrlSegment("id", id);
+            req.AddUrlSegment("token", uCo.token);
             var truc = restClient.Get<CabinetData>(req);
             return truc.Data.Cabinet;
         }

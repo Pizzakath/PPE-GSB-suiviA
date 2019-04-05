@@ -22,97 +22,119 @@ namespace suiviA.Commands
         }
 
         // Méthode GET
-        public Utilisateurs GetMedecinAll()
+        public Utilisateurs GetMedecinAll(Utilisateur uCo)
         {
-            return restClient.Get<Utilisateurs>(new RestRequest("/api/medecins/")).Data;
-        }
-
-        public Utilisateur GetMedecinById(int id)
-        {
-            RestRequest req = new RestRequest("/api/medecins/{id}", Method.GET);
-            req.AddUrlSegment("id", id);
-            var truc = restClient.Get<UtilisateurData>(req);
-            return truc.Data.Utilisateur;
-        }
-
-        public Utilisateurs GetVisiteurAll()
-        {
-            return restClient.Get<Utilisateurs>(new RestRequest("/api/visiteurs/")).Data;
-        }
-
-        public Utilisateur GetVisiteurById(int id)
-        {
-            RestRequest req = new RestRequest("/api/visiteurs/{id}", Method.GET);
-            req.AddUrlSegment("id", id);
-            var truc = restClient.Get<UtilisateurData>(req);
-            return truc.Data.Utilisateur;
-        }
-
-        public Utilisateurs GetMedecinVisiteur(int idVisiteur)
-        {
-            RestRequest req = new RestRequest("api/visiteurs/medecins/{id}");
-            req.AddUrlSegment("id", idVisiteur);
+            RestRequest req = new RestRequest("/api/medecins/{token}");
+            req.AddUrlSegment("token", uCo);
             return restClient.Get<Utilisateurs>(req).Data;
         }
 
-        public void SetMedecinVisiteur(int idVisiteur, int idMedecin)
+        public Utilisateur GetMedecinById(int id, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/visiteurs/medecins{id}", Method.POST);
+            RestRequest req = new RestRequest("/api/medecins/{token}/{id}", Method.GET);
+            req.AddUrlSegment("id", id);
+            req.AddUrlSegment("token", uCo);
+            var truc = restClient.Get<UtilisateurData>(req);
+            return truc.Data.Utilisateur;
+        }
+
+        public Utilisateurs GetVisiteurAll(Utilisateur uCo)
+        {
+            RestRequest req = new RestRequest("/api/visiteurs/{token}");
+            req.AddUrlSegment("token", uCo.token);
+            return restClient.Get<Utilisateurs>(req).Data;
+        }
+
+        public Utilisateur GetVisiteurById(int id, Utilisateur uCo)
+        {
+            RestRequest req = new RestRequest("/api/visiteurs/{token}/{id}", Method.GET);
+            req.AddUrlSegment("id", id);
+            req.AddUrlSegment("token", uCo.token);
+            var truc = restClient.Get<UtilisateurData>(req);
+            return truc.Data.Utilisateur;
+        }
+
+        public Utilisateurs GetMedecinVisiteur(int idVisiteur, Utilisateur uCo)
+        {
+            RestRequest req = new RestRequest("api/visiteurs/medecins/{token}/{id}");
+            req.AddUrlSegment("id", idVisiteur);
+            req.AddUrlSegment("token", uCo.token);
+            return restClient.Get<Utilisateurs>(req).Data;
+        }
+
+        public void SetMedecinVisiteur(int idVisiteur, int idMedecin, Utilisateur uCo)
+        {
+            RestRequest req = new RestRequest("api/visiteurs/medecins/{token}/{id}", Method.POST);
             req.RequestFormat = DataFormat.Json;
+            req.AddUrlSegment("token", uCo.token);
             req.AddJsonBody(JsonConvert.SerializeObject(idMedecin));
             restClient.Execute(req);
         }
 
         // Méthode POST
-        public void CreateMedecin(Utilisateur medecin)
+        public void CreateMedecin(Utilisateur medecin, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("/api/medecins/", Method.POST);
+            RestRequest req = new RestRequest("/api/medecins/{token}", Method.POST);
             req.AddJsonBody(JsonConvert.SerializeObject(medecin));
+            req.AddUrlSegment("token", uCo.token);
             req.RequestFormat = DataFormat.Json;
             restClient.Execute(req);
         }
 
-        // Méthode PUT
-        public void UpdateMedecin(Utilisateur medecin)
+        public Utilisateur Connexion(string identifiant, string mdp)
         {
-            RestRequest req = new RestRequest("api/medecins/", Method.PUT);
+            UserConnexion conn = new UserConnexion(identifiant, mdp);
+            RestRequest req = new RestRequest("api/auth/", Method.POST);
             req.RequestFormat = DataFormat.Json;
+            req.AddJsonBody(JsonConvert.SerializeObject(conn));
+            var truc = restClient.Get<Utilisateur>(req).Data;
+            return truc;
+        }
 
+        // Méthode PUT
+        public void UpdateMedecin(Utilisateur medecin, Utilisateur uCo)
+        {
+            RestRequest req = new RestRequest("api/medecins/{token}", Method.PUT);
+            req.RequestFormat = DataFormat.Json;
+            req.AddUrlSegment("token", uCo.token);
             req.AddJsonBody(JsonConvert.SerializeObject(medecin));
             restClient.Execute(req);
         }
 
         // Méthode DELETE
-        public void DeleteMedecin(int id)
+        public void DeleteMedecin(int id, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/medecins/{id}", Method.DELETE);
+            RestRequest req = new RestRequest("api/medecins/{token}/{id}", Method.DELETE);
             req.AddUrlSegment("id", id);
+            req.AddUrlSegment("token", uCo.token);
             restClient.Execute(req);
         }
 
         
-        public void CreateVisiteur(Utilisateur visiteur)
+        public void CreateVisiteur(Utilisateur visiteur, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("/api/visiteurs/", Method.POST);
+            RestRequest req = new RestRequest("/api/visiteurs/{token}/", Method.POST);
             req.AddJsonBody(JsonConvert.SerializeObject(visiteur));
+            req.AddUrlSegment("token", uCo.token);
             req.RequestFormat = DataFormat.Json;
             restClient.Execute(req);
         }
 
         // Méthode PUT
-        public void UpdateVisiteur(Utilisateur visiteur)
+        public void UpdateVisiteur(Utilisateur visiteur, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/visiteurs/", Method.PUT);
+            RestRequest req = new RestRequest("api/visiteurs/{token}", Method.PUT);
             req.RequestFormat = DataFormat.Json;
-
+            req.AddUrlSegment("token", uCo.token);
             req.AddJsonBody(JsonConvert.SerializeObject(visiteur));
             restClient.Execute(req);
         }
 
         // Méthode DELETE
-        public void DeleteVisiteur(int id)
+        public void DeleteVisiteur(int id, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/visiteurs/{id}", Method.DELETE);
+            RestRequest req = new RestRequest("api/visiteurs/{token}/{id}", Method.DELETE);
+            req.AddUrlSegment("token", uCo.token);
             req.AddUrlSegment("id", id);
             restClient.Execute(req);
         }

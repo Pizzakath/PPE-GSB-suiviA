@@ -21,42 +21,47 @@ namespace suiviA.Commands
             restClient = ClientRestSharp.GetClient();
         }
 
-        public Visites GetVisiteAllByIdMedecin(int id)
+        public Visites GetVisiteAllByIdMedecin(int id, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/medecins/visites/{id}");
+            RestRequest req = new RestRequest("api/medecins/visites/{token}/{id}");
             req.AddUrlSegment("id", id);
+            req.AddUrlSegment("token", uCo.token);
             var truc = restClient.Get<Visites>(req);
             return truc.Data;
         }
 
-        public Visites GetVisiteAllByIdVisiteur(int id)
+        public Visites GetVisiteAllByIdVisiteur(int id, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/visiteurs/visites/{id}");
+            RestRequest req = new RestRequest("api/visiteurs/visites/{token}/{id}");
             req.AddUrlSegment("id", id);
+            req.AddUrlSegment("token", uCo.token);
             var truc = restClient.Get<Visites>(req);
             return truc.Data;
         }
 
-        public void CreateVisite(Visite visite)
+        public void CreateVisite(Visite visite, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/visites", Method.POST);
+            RestRequest req = new RestRequest("api/visites/{token}", Method.POST);
             req.RequestFormat = DataFormat.Json;
+            req.AddUrlSegment("token", uCo.token);
             req.AddJsonBody(JsonConvert.SerializeObject(visite));
             restClient.Execute(req);
         }
 
-        public void UpdateVisite(Visite visite)
+        public void UpdateVisite(Visite visite, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/visites", Method.PUT);
+            RestRequest req = new RestRequest("api/visites/{token}", Method.PUT);
             req.RequestFormat = DataFormat.Json;
+            req.AddUrlSegment("token", uCo.token);
             req.AddJsonBody(JsonConvert.SerializeObject(visite));
             restClient.Execute(req);
         }
 
-        public void DeleteVisite(int id)
+        public void DeleteVisite(int id, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/visites{id}", Method.DELETE);
+            RestRequest req = new RestRequest("api/visites/{token}/{id}", Method.DELETE);
             req.AddUrlSegment("id", id);
+            req.AddUrlSegment("token", uCo.token);
             restClient.Execute(req);
         }
     }

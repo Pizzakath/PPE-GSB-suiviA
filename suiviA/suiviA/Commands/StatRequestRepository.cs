@@ -17,10 +17,11 @@ namespace suiviA.Commands
             restClient = ClientRestSharp.GetClient();
         }
 
-        public int RequeteStat(StatRequest statRequete)
+        public int RequeteStat(StatRequest statRequete, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/stats", Method.POST);
+            RestRequest req = new RestRequest("api/stats/{token}", Method.POST);
             req.RequestFormat = DataFormat.Json;
+            req.AddUrlSegment("token", uCo.token);
             req.AddJsonBody(JsonConvert.SerializeObject(statRequete));
             var truc = restClient.Get<int>(req).Data;
             return truc;
