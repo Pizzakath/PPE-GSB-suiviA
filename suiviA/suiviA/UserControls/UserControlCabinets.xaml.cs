@@ -21,9 +21,73 @@ namespace suiviA.UserControls
     /// </summary>
     public partial class UserControlCabinets : UserControl
     {
-        public UserControlCabinets(Utilisateur _user)
+        private Utilisateur _user { get; set; }
+
+        public UserControlCabinets(Utilisateur utilisateur)
         {
             InitializeComponent();
+            _user = utilisateur;
+            CabinetRepository cabinetRepository = new CabinetRepository();
+            Cabinets listeCabinets = cabinetRepository.GetAll(_user);
+
+            afficherListe(listeCabinets);
+
+        }
+
+        public void afficherListe(Cabinets listeCabinets)
+        {
+            if (listeCabinets.ListeCabinet != null)
+            {
+                foreach (Cabinet el in listeCabinets.ListeCabinet)
+                {
+                    CabinetListView.Items.Add(new Cabinet(
+                        el.id,
+                        el.numero,
+                        el.rue,
+                        el.ville,
+                        el.nomRegion,
+                        el.nomDepartement
+                        ));
+                }
+            }
+        }
+
+        private void ButtonAjouterCabinet_Click(object sender, RoutedEventArgs e)
+        {
+            if((numeroCabinetTextBox.Text != null) && (rueCabinetTextBox != null) 
+                && (villeCabinetTextBox != null) && (regionCabinetTextBox != null) 
+                && (departementCabinetTextBox != null) 
+                )
+            {
+                Cabinet nouveauCabinet = new Cabinet(
+                int.Parse(numeroCabinetTextBox.Text),
+                rueCabinetTextBox.Text,
+                villeCabinetTextBox.Text,
+                regionCabinetTextBox.Text,
+                departementCabinetTextBox.Text
+                );
+
+                CabinetRepository cabinetRepository = new CabinetRepository();
+                cabinetRepository.CreateCabinet(nouveauCabinet, _user);
+
+                MessageBox.Show("Cabinet créé !");
+                Cabinets listeCabinets = cabinetRepository.GetAll(_user);
+
+                afficherListe(listeCabinets);
+            }
+            else
+            {
+                MessageBox.Show("Un champs est manquant ou mal renseigné");
+            }
+            
+            //string _numero = numeroCabinetTextBox.Text;
+            //string _rue = rueCabinetTextBox.Text;
+            //string _ville = villeCabinetTextBox.Text;
+            //string _region = regionCabinetTextBox.Text;
+            //string _departement = departementCabinetTextBox.Text;
+
+
+
         }
     }
 }

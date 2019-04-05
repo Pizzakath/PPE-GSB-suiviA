@@ -29,10 +29,10 @@ namespace suiviA.Commands
         public string ville { get; set; }
 
         [DeserializeAs(Name = "nomRegion")]
-        public string region { get; set; }
+        public string nomRegion { get; set; }
 
         [DeserializeAs(Name = "nomDepartement")]
-        public string departement { get; set; }
+        public string nomDepartement { get; set; }
 
         public Cabinet(int numero, string rue, string ville, string nomRegion, string nomDepartement)
         {
@@ -40,8 +40,8 @@ namespace suiviA.Commands
             this.numero = numero;
             this.rue = rue;
             this.ville = ville;
-            this.region = nomRegion;
-            this.departement = nomDepartement;
+            this.nomRegion = nomRegion;
+            this.nomDepartement = nomDepartement;
         }
 
         public Cabinet(int id, int numero, string rue, string ville, string nomRegion, string nomDepartement)
@@ -51,8 +51,8 @@ namespace suiviA.Commands
             this.numero = numero;
             this.rue = rue;
             this.ville = ville;
-            this.region = nomRegion;
-            this.departement = nomDepartement;
+            this.nomRegion = nomRegion;
+            this.nomDepartement = nomDepartement;
         }
         //[DeserializeAs(Name = "commune")]
 

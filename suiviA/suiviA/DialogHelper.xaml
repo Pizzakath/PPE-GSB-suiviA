@@ -8,30 +8,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="540" d:DesignWidth="1010">
     <Grid Background="White">
-        <Grid Width="300" Height="400">
+        <Grid Width="300" Height="370">
             <StackPanel>
-                <Label x:Name="AddVisitTitle" FontSize="24" Width="200" Margin="0,25,0,20">Ajouter une visite</Label>
-                <ComboBox materialDesign:HintAssist.Hint="Quel Médecin ?" Width="250" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                    <ComboBoxItem IsSelected="True">
-                        Medecin
-                    </ComboBoxItem>
-                </ComboBox>
+                <Label x:Name="AddCabinetTitle" FontSize="24" Margin="50,25,40,20" Content="Ajouter un Cabinet" />
                 <StackPanel Orientation="Horizontal" Margin="5,25,5,0">
-                    <DatePicker Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Date de Visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Language="Fr" />
-                    <materialDesign:TimePicker Is24Hours="True" Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure d'arrivée" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0" />
+                    <TextBox Name="numeroCabinetTextBox" materialDesign:HintAssist.Hint="Numero" MaxWidth="131" Width="131" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4" />
+                    <TextBox x:Name="rueCabinetTextBox" Margin="20,0,0,0" MaxWidth="131" Width="131" materialDesign:HintAssist.Hint="Rue" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5,25,5,20">
-                    <materialDesign:TimePicker Is24Hours="True" Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Heure de Début" Style="{StaticResource MaterialDesignFloatingHintTimePicker}"/>
-                    <materialDesign:TimePicker  Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure de Fin" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="5,25,5,0">
+                    <TextBox Name="villeCabinetTextBox" materialDesign:HintAssist.Hint="Ville" MaxWidth="131" Width="131" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4" />
+                    <TextBox x:Name="regionCabinetTextBox" Margin="20,0,0,0" MaxWidth="131" Width="131" materialDesign:HintAssist.Hint="Region" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4"/>
+                </StackPanel><StackPanel Orientation="Horizontal" Margin="5,25,5,0">
+                    <TextBox Name="departementCabinetTextBox" materialDesign:HintAssist.Hint="Departement" MaxWidth="131" Width="131" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4" />
                 </StackPanel>
-                <ComboBox materialDesign:HintAssist.Hint="Visite sur rendez-vous ?" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="5,10,175.4,0">
-                    <ComboBoxItem IsSelected="True">
-                        Oui
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        Non
-                    </ComboBoxItem>
-                </ComboBox>
+
                 <!--BOUTONS-->
                 <StackPanel Orientation="Horizontal" Margin="0,30,0,30" Height="50">
                     <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Retour"/>

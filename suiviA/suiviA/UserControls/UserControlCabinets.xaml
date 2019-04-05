@@ -4,24 +4,58 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:suiviA"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="540" d:DesignWidth="1010">
     <Grid Background="WhiteSmoke">
         <StackPanel>
             <Label Content="Liste des Cabinets" FontSize="24" Foreground="#FF1976D2" FontWeight="Bold" Margin="447,20,351.6,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <StackPanel>
-                <ListView x:Name="DoctorListView" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" MinWidth="660" MaxWidth="660" Margin="210,0,0,0" >
+                <ListView x:Name="CabinetListView" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" MinWidth="660" MaxWidth="660" Margin="210,0,0,0" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Adresse"  DisplayMemberBinding="{Binding adresse}"/>
-                            <GridViewColumn Header="Code Postal"  DisplayMemberBinding="{Binding codePostal}"/>
+                            <GridViewColumn Header="N°"  DisplayMemberBinding="{Binding numero}"/>
+                            <GridViewColumn Header="Rue"  DisplayMemberBinding="{Binding rue}"/>
                             <GridViewColumn Header="Ville"  DisplayMemberBinding="{Binding ville}"/>
-                            <GridViewColumn Header="Latitude"  DisplayMemberBinding="{Binding Latitude}"/>
-                            <GridViewColumn Header="Longitude"  DisplayMemberBinding="{Binding Longitude}"/>
+                            <GridViewColumn Header="Region"  DisplayMemberBinding="{Binding region}"/>
+                            <GridViewColumn Header="Departement"  DisplayMemberBinding="{Binding departement}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </StackPanel>
         </StackPanel>
+
+        <materialDesign:DialogHost IsOpen="False" CloseOnClickAway="True">
+            <materialDesign:DialogHost.DialogContent >
+                <Grid Width="300"  Height="370">
+                    <StackPanel>
+                        <Label x:Name="DialogCabinetTitle" FontSize="24" Margin="50,25,40,20" Content="Ajouter un Cabinet" />
+                        <StackPanel Orientation="Horizontal" Margin="5,25,5,0">
+                            <TextBox Name="numeroCabinetTextBox" materialDesign:HintAssist.Hint="Numero" MaxWidth="131" Width="131" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4" />
+                            <TextBox x:Name="rueCabinetTextBox" Margin="20,0,0,0" MaxWidth="131" Width="131" materialDesign:HintAssist.Hint="Rue" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,25,5,0">
+                            <TextBox Name="villeCabinetTextBox" materialDesign:HintAssist.Hint="Ville" MaxWidth="131" Width="131" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4" />
+                            <TextBox x:Name="regionCabinetTextBox" Margin="20,0,0,0" MaxWidth="131" Width="131" materialDesign:HintAssist.Hint="Region" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,25,5,0">
+                            <TextBox Name="departementCabinetTextBox" materialDesign:HintAssist.Hint="Departement" MaxWidth="131" Width="131" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4" />
+                        </StackPanel>
+
+                        <!--BOUTONS-->
+                        <StackPanel Orientation="Horizontal" Margin="0,30,0,30" Height="50">
+                            <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Retour"/>
+                            <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Click="ButtonAjouterCabinet_Click"  Height="Auto" Width="150" Content="Ajouter"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+            <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                            ToolTip="MaterialDesignFloatingActionLightButton" Margin="913,448,41,36" Background="#FF557FF0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+
+                <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
+            </Button>
+        </materialDesign:DialogHost>
+        
     </Grid>
 </UserControl>
