@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using suiviA.Commands;
 
 namespace suiviA
 {
@@ -25,26 +26,41 @@ namespace suiviA
         }
 
         
-        Login login = new Login("Admin", "Admin0", 2);
+       // Login login = new Login("Admin", "Admin0", 2);
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             string user = usernameTextBox.Text;
             string pass = passwordTextBox.Password;
-            
-            if (login.IsLoggedIn(user, pass))
+
+            UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
+            Utilisateur utilisateur = repoUtilisateur.Connexion(user, pass);
+
+            if (utilisateur != null)
             {
-                MessageBox.Show("You are logged in successfully");
-                MainWindow mainWindow = new MainWindow(login.Role);
+                MainWindow mainWindow = new MainWindow(utilisateur);
 
                 mainWindow.Show();
                 Close();
             }
             else
             {
-                //show default login error message
-                MessageBox.Show("Login Error!");
+                MessageBox.Show("Adrien est pd car Utilisateur est NULL");
             }
+
+            //if (login.IsLoggedIn(user, pass))
+            //{
+            //    MessageBox.Show("You are logged in successfully");
+            //    MainWindow mainWindow = new MainWindow(login.Role);
+
+            //    mainWindow.Show();
+            //    Close();
+            //}
+            //else
+            //{
+            //    //show default login error message
+            //    MessageBox.Show("Login Error!");
+            //}
         }
     }
 }

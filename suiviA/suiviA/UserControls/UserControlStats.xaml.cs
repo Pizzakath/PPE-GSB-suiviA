@@ -21,12 +21,12 @@ namespace suiviA.UserControls
     /// </summary>
     public partial class UserControlStats : UserControl
     {
-        public UserControlStats()
+        public UserControlStats(Utilisateur _utilisateur)
         {
             InitializeComponent();
             UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
-            Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll();
-            Utilisateurs listeVisiteurs = repoUtilisateur.GetVisiteurAll();
+            Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll(_utilisateur);
+            Utilisateurs listeVisiteurs = repoUtilisateur.GetVisiteurAll(_utilisateur);
             afficherMedecins(listeMedecins, listeVisiteurs);
 
             string debutPeriode = DebutPeriodeDatePicker.Text;
@@ -76,6 +76,7 @@ namespace suiviA.UserControls
             string debutPeriode = DebutPeriodeDatePicker.Text;
             string finPeriode = FinPeriodeDatePicker.Text;
             string nomMedecin = DoctorComboBox.Text;
+            
             StatRequestRepository repoStats = new StatRequestRepository();
            
             

@@ -21,11 +21,11 @@ namespace suiviA.UserControls
     /// </summary>
     public partial class UserControlAffectation : UserControl
     {
-        public UserControlAffectation()
+        public UserControlAffectation(Utilisateur utilisateur)
         {
             InitializeComponent(); UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
-            Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll();
-            Utilisateurs listeVisiteurs = repoUtilisateur.GetVisiteurAll();
+            Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll(utilisateur);
+            Utilisateurs listeVisiteurs = repoUtilisateur.GetVisiteurAll(utilisateur);
             afficherMedecins(listeMedecins, listeVisiteurs);
         }
 

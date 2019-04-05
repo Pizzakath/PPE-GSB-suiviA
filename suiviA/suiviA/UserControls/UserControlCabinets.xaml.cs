@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using suiviA.Commands;
 
 namespace suiviA.UserControls
 {
@@ -20,7 +21,7 @@ namespace suiviA.UserControls
     /// </summary>
     public partial class UserControlCabinets : UserControl
     {
-        public UserControlCabinets()
+        public UserControlCabinets(Utilisateur _user)
         {
             InitializeComponent();
         }

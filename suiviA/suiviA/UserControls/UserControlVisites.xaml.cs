@@ -21,13 +21,13 @@ namespace suiviA.UserControls
     /// </summary>
     public partial class UserControlVisites : UserControl
     {
-        public UserControlVisites()
+        public UserControlVisites(Utilisateur _user)
         {
             InitializeComponent();
 
             VisiteRepository repoUtilisateur = new VisiteRepository();
             // TODO: id visiteur rentré en dur, il faudra le changer en fonction de son id (Cf. Auth)
-            Visites listeVisites = repoUtilisateur.GetVisiteAllByIdVisiteur(4);
+            Visites listeVisites = repoUtilisateur.GetVisiteAllByIdVisiteur(_user.id, _user);
             Console.WriteLine(listeVisites.ListeVisites);
             afficherListe(listeVisites.ListeVisites);
 

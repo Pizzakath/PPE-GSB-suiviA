@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using suiviA.Commands;
 using suiviA.UserControls;
 
 namespace suiviA
@@ -21,11 +22,18 @@ namespace suiviA
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(int role)
+
+        public Utilisateur _user { get; set; }
+
+        public MainWindow(Utilisateur utilisateur)
         {
             InitializeComponent();
-            GridMain.Children.Add(new UserControlStats());
-            //AfficherOnglets(role);
+            _user = utilisateur;
+
+            GridMain.Children.Add(new UserControlStats(_user));
+            AfficherOnglets(_user.type);
+
+
 
         }
 
@@ -49,45 +57,59 @@ namespace suiviA
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "ItemVisite":
-                    usc = new UserControlVisites();
+                    usc = new UserControlVisites(_user);
                     GridMain.Children.Add(usc);
                     break;
                 case "ItemCabinet":
-                    usc = new UserControlCabinets();
+                    usc = new UserControlCabinets(_user);
                     GridMain.Children.Add(usc);
                     break;
                 case "ItemMedecin":
-                    usc = new UserControlMedecins();
+                    usc = new UserControlMedecins(_user);
                     GridMain.Children.Add(usc);
                     break;
                 case "ItemStats":
-                    usc = new UserControlStats();
+                    usc = new UserControlStats(_user);
                     GridMain.Children.Add(usc);
                     break;
                 case "ItemAffectation":
-                    usc = new UserControlAffectation();
+                    usc = new UserControlAffectation(_user);
                     GridMain.Children.Add(usc);
                     break;
                 default:
-                    usc = new UserControlStats();
+                    usc = new UserControlStats(_user);
                     GridMain.Children.Add(usc);
                     break;
             }
         }
 
-        private void AfficherOnglets(int role)
+        private void AfficherOnglets(int typeUtilisateur)
         {
-            switch (role)
+            switch (typeUtilisateur)
             {
+                // 1 = Administrateur
                 case 0:
+                    ItemVisite.Visibility = Visibility.Collapsed;
+                    ItemStats.Visibility = Visibility.Visible;
+                    ItemMedecin.Visibility = Visibility.Visible;
+                    ItemCabinet.Visibility = Visibility.Visible;
+                    ItemAffectation.Visibility = Visibility.Visible;
+                    break;
+                // 2 = Médecin
+                case 1:
+                    ItemVisite.Visibility = Visibility.Visible;
+                    ItemStats.Visibility = Visibility.Visible;
                     ItemMedecin.Visibility = Visibility.Collapsed;
                     ItemCabinet.Visibility = Visibility.Collapsed;
+                    ItemAffectation.Visibility = Visibility.Collapsed;
                     break;
-                case 1:
-                    ItemVisite.Visibility = Visibility.Collapsed;
-                    break;
+                // 3 = Visiteur
                 case 2:
-                    ItemVisite.Visibility = Visibility.Collapsed;
+                    ItemVisite.Visibility = Visibility.Visible;
+                    ItemStats.Visibility = Visibility.Visible;
+                    ItemMedecin.Visibility = Visibility.Collapsed;
+                    ItemCabinet.Visibility = Visibility.Collapsed;
+                    ItemAffectation.Visibility = Visibility.Collapsed;
                     break;
                 default:
                     break;

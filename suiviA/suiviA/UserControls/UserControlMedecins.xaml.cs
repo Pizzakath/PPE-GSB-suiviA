@@ -22,12 +22,12 @@ namespace suiviA.UserControls
     /// </summary>
     public partial class UserControlMedecins : UserControl
     {
-        public UserControlMedecins()
+        public UserControlMedecins(Utilisateur _user)
         {
             InitializeComponent();
 
             UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
-            Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll();
+            Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll(_user);
             afficherListe(listeMedecins);
 
         }
