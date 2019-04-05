@@ -35,7 +35,8 @@ namespace suiviA
 
             UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
             Utilisateur utilisateur = repoUtilisateur.Connexion(user, pass);
-
+            utilisateur.token = repoUtilisateur.Connexion(user, pass).token;
+            
             if (utilisateur != null)
             {
                 MainWindow mainWindow = new MainWindow(utilisateur);
