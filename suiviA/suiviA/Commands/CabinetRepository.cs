@@ -47,7 +47,7 @@ namespace suiviA.Commands
         public Cabinet GetCabinetByIdMedecin(int id)
         {
             // Id du medecin
-            RestRequest req = new RestRequest("/api/cabinets{id}");
+            RestRequest req = new RestRequest("/api/cabinets/{id}");
             req.AddUrlSegment("id", id);
             var truc = restClient.Get<CabinetData>(req);
             return truc.Data.Cabinet;

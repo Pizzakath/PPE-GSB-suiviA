@@ -50,7 +50,7 @@ namespace suiviA.Commands
 
         public Utilisateurs GetMedecinVisiteur(int idVisiteur)
         {
-            RestRequest req = new RestRequest("api/visiteurs/medecins{id]");
+            RestRequest req = new RestRequest("api/visiteurs/medecins/{id}");
             req.AddUrlSegment("id", idVisiteur);
             return restClient.Get<Utilisateurs>(req).Data;
         }
