@@ -17,15 +17,15 @@
                             <GridViewColumn Header="N°"  DisplayMemberBinding="{Binding numero}"/>
                             <GridViewColumn Header="Rue"  DisplayMemberBinding="{Binding rue}"/>
                             <GridViewColumn Header="Ville"  DisplayMemberBinding="{Binding ville}"/>
-                            <GridViewColumn Header="Region"  DisplayMemberBinding="{Binding region}"/>
-                            <GridViewColumn Header="Departement"  DisplayMemberBinding="{Binding departement}"/>
+                            <GridViewColumn Header="Region"  DisplayMemberBinding="{Binding nomRegion}"/>
+                            <GridViewColumn Header="Departement"  DisplayMemberBinding="{Binding nomDepartement}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </StackPanel>
         </StackPanel>
 
-        <materialDesign:DialogHost IsOpen="False" CloseOnClickAway="True">
+        <materialDesign:DialogHost x:Name="CabinetDialogHost" IsOpen="False" CloseOnClickAway="True">
             <materialDesign:DialogHost.DialogContent >
                 <Grid Width="300"  Height="370">
                     <StackPanel>

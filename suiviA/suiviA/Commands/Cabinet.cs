@@ -16,9 +16,6 @@ namespace suiviA.Commands
         [DeserializeAs(Name = "id")]
         public int id { get; set; }
 
-        [DeserializeAs(Name = "adresse")]
-        public string adresse { get; set; }
-
         [DeserializeAs(Name = "numero")]
         public int numero { get; set; }
 
@@ -34,9 +31,13 @@ namespace suiviA.Commands
         [DeserializeAs(Name = "nomDepartement")]
         public string nomDepartement { get; set; }
 
+        public Cabinet()
+        {
+
+        }
+
         public Cabinet(int numero, string rue, string ville, string nomRegion, string nomDepartement)
         {
-            this.adresse = numero.ToString() + " " + rue + " " + ville;
             this.numero = numero;
             this.rue = rue;
             this.ville = ville;
@@ -47,7 +48,6 @@ namespace suiviA.Commands
         public Cabinet(int id, int numero, string rue, string ville, string nomRegion, string nomDepartement)
         {
             this.id = id;
-            this.adresse = numero.ToString() + " " + rue + " " + ville;
             this.numero = numero;
             this.rue = rue;
             this.ville = ville;

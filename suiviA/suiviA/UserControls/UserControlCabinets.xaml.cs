@@ -71,8 +71,10 @@ namespace suiviA.UserControls
                 cabinetRepository.CreateCabinet(nouveauCabinet, _user);
 
                 MessageBox.Show("Cabinet créé !");
-                Cabinets listeCabinets = cabinetRepository.GetAll(_user);
 
+                Cabinets listeCabinets = cabinetRepository.GetAll(_user);
+                CabinetDialogHost.IsOpen = false;
+                CabinetListView.Items.Clear();
                 afficherListe(listeCabinets);
             }
             else
