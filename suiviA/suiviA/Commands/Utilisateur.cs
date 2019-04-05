@@ -51,7 +51,7 @@ namespace suiviA.Commands
         public int type { get; set; }
 
         [DeserializeAs(Name ="token")]
-        public string token { get; }
+        public string token { get; set; }
 
         public Utilisateur()
         {
