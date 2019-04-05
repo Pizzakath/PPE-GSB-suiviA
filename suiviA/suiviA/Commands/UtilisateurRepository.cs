@@ -48,6 +48,21 @@ namespace suiviA.Commands
             return truc.Data.Utilisateur;
         }
 
+        public Utilisateurs GetMedecinVisiteur(int idVisiteur)
+        {
+            RestRequest req = new RestRequest("api/visiteurs/medecins{id]");
+            req.AddUrlSegment("id", idVisiteur);
+            return restClient.Get<Utilisateurs>(req).Data;
+        }
+
+        public void SetMedecinVisiteur(int idVisiteur, int idMedecin)
+        {
+            RestRequest req = new RestRequest("api/visiteurs/medecins{id}", Method.POST);
+            req.RequestFormat = DataFormat.Json;
+            req.AddJsonBody(JsonConvert.SerializeObject(idMedecin));
+            restClient.Execute(req);
+        }
+
         // Méthode POST
         public void CreateMedecin(Utilisateur medecin)
         {

@@ -43,6 +43,17 @@ namespace suiviA.Commands
             this.region = nomRegion;
             this.departement = nomDepartement;
         }
+
+        public Cabinet(int id, int numero, string rue, string ville, string nomRegion, string nomDepartement)
+        {
+            this.id = id;
+            this.adresse = numero.ToString() + " " + rue + " " + ville;
+            this.numero = numero;
+            this.rue = rue;
+            this.ville = ville;
+            this.region = nomRegion;
+            this.departement = nomDepartement;
+        }
         //[DeserializeAs(Name = "commune")]
 
 
