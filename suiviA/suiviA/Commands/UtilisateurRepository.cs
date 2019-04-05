@@ -21,7 +21,6 @@ namespace suiviA.Commands
             restClient = ClientRestSharp.GetClient();
         }
 
-        // Méthode GET
         public Utilisateurs GetMedecinAll(Utilisateur uCo)
         {
             RestRequest req = new RestRequest("/api/medecins/{token}");
@@ -71,7 +70,7 @@ namespace suiviA.Commands
             restClient.Execute(req);
         }
 
-        // Méthode POST
+        
         public void CreateMedecin(Utilisateur medecin, Utilisateur uCo)
         {
             RestRequest req = new RestRequest("/api/medecins/{token}", Method.POST);
@@ -81,17 +80,17 @@ namespace suiviA.Commands
             restClient.Execute(req);
         }
 
+        // METHODE DE CONNEXION
         public Utilisateur Connexion(string identifiant, string mdp)
         {
             UserConnexion conn = new UserConnexion(identifiant, mdp);
             RestRequest req = new RestRequest("api/auth/", Method.POST);
             req.RequestFormat = DataFormat.Json;
             req.AddJsonBody(JsonConvert.SerializeObject(conn));
-            var truc = restClient.Get<Utilisateur>(req).Data;
+            var truc = restClient.Post<Utilisateur>(req).Data;
             return truc;
         }
 
-        // Méthode PUT
         public void UpdateMedecin(Utilisateur medecin, Utilisateur uCo)
         {
             RestRequest req = new RestRequest("api/medecins/{token}", Method.PUT);
@@ -101,7 +100,6 @@ namespace suiviA.Commands
             restClient.Execute(req);
         }
 
-        // Méthode DELETE
         public void DeleteMedecin(int id, Utilisateur uCo)
         {
             RestRequest req = new RestRequest("api/medecins/{token}/{id}", Method.DELETE);
@@ -120,7 +118,6 @@ namespace suiviA.Commands
             restClient.Execute(req);
         }
 
-        // Méthode PUT
         public void UpdateVisiteur(Utilisateur visiteur, Utilisateur uCo)
         {
             RestRequest req = new RestRequest("api/visiteurs/{token}", Method.PUT);
@@ -130,7 +127,6 @@ namespace suiviA.Commands
             restClient.Execute(req);
         }
 
-        // Méthode DELETE
         public void DeleteVisiteur(int id, Utilisateur uCo)
         {
             RestRequest req = new RestRequest("api/visiteurs/{token}/{id}", Method.DELETE);
