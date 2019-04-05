@@ -8,13 +8,13 @@ namespace suiviA.Commands
 {
     public class UserConnexion
     {
-        public string identifiant { get; set; }
-        public string mdp { get; set; }
+        public string id { get; set; }
+        public string password { get; set; }
 
         public UserConnexion(string identifiant, string mdp)
         {
-            this.identifiant = identifiant;
-            this.mdp = mdp;
+            this.id = identifiant;
+            this.password = mdp;
         }
     }
 
