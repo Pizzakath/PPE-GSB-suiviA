@@ -41,6 +41,11 @@ namespace suiviA.Commands
         [DeserializeAs(Name = "heureDepart")]
         public DateTime heureDepart { get; set; }
 
+        public Visite()
+        {
+            // TODO: FILS DE PUTE
+        }
+
         public Visite(int id, int idVisiteur, int idMedecin, DateTime date, bool surRDV, DateTime heureArrivee
             , DateTime HeureDebut, DateTime heureDepart)
         {

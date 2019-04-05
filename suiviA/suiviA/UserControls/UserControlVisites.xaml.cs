@@ -28,14 +28,15 @@ namespace suiviA
             VisiteRepository repoUtilisateur = new VisiteRepository();
             // TODO: id visiteur rentré en dur, il faudra le changer en fonction de son id (Cf. Auth)
             Visites listeVisites = repoUtilisateur.GetVisiteAllByIdVisiteur(4);
-            afficherListe(listeVisites);
+            Console.WriteLine(listeVisites.ListeVisites);
+            afficherListe(listeVisites.ListeVisites);
 
         }
 
-        public void afficherListe(Visites listeVisites)
+        public void afficherListe(List<Visite> listeVisites)
         {
             {
-                foreach (Visite el in listeVisites.ListeVisites)
+                foreach (Visite el in listeVisites)
                 {
                     VisitListView.Items.Add(new Visite(
                         el.id,
@@ -48,7 +49,8 @@ namespace suiviA
                         DateTime.Parse(el.heureDepart.ToString()))
                         );
                 }
-            
+
+            }
         }
     }
 }

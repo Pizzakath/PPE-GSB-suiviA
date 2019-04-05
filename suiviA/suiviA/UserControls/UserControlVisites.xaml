@@ -11,7 +11,7 @@
         <StackPanel>
             <Label Content="Liste des Visites" FontSize="24" Foreground="#FF1976D2" FontWeight="Bold" Margin="459,20,363.6,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <StackPanel>
-                <ListView Name="VisitListView" HorizontalAlignment="Left" Height="468" VerticalAlignment="Top" Width="660" Margin="210,0,0,0" >
+                <ListView Name="VisitListView" HorizontalAlignment="Left" Height="468" VerticalAlignment="Top" Width="830" Margin="40,0,0,0" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="idMedecin"  DisplayMemberBinding="{Binding idMedecin}"/>
@@ -25,7 +25,7 @@
                 </ListView>
             </StackPanel>
         </StackPanel>
-        
+
 
         <materialDesign:DialogHost IsOpen="False" CloseOnClickAway="True">
             <materialDesign:DialogHost.DialogContent >
@@ -63,7 +63,7 @@
             </materialDesign:DialogHost.DialogContent>
             <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                             ToolTip="MaterialDesignFloatingActionLightButton" Margin="913,448,41,36" Background="#FF557FF0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
-                            <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
+                <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
             </Button>
         </materialDesign:DialogHost>
 
