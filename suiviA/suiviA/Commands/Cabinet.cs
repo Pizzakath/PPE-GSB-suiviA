@@ -19,6 +19,18 @@ namespace suiviA.Commands
         [DeserializeAs(Name = "adresse")]
         public string adresse { get; set; }
 
+        [DeserializeAs(Name = "numero")]
+        public int numero { get; set; }
+
+        [DeserializeAs(Name ="ville")]
+        public string ville { get; set; }
+
+        [DeserializeAs(Name ="nomRegion")]
+        public string region { get; set; }
+
+        [DeserializeAs(Name ="nomDepartement")]
+        public string departement { get; set; }
+
         public Cabinet()
         {
 

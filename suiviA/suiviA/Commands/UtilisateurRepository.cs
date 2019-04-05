@@ -75,5 +75,32 @@ namespace suiviA.Commands
             restClient.Execute(req);
         }
 
+        
+        public void CreateVisiteur(Utilisateur visiteur)
+        {
+            RestRequest req = new RestRequest("/api/visiteurs/", Method.POST);
+            req.AddJsonBody(JsonConvert.SerializeObject(visiteur));
+            req.RequestFormat = DataFormat.Json;
+            restClient.Execute(req);
+        }
+
+        // Méthode PUT
+        public void UpdateVisiteur(Utilisateur visiteur)
+        {
+            RestRequest req = new RestRequest("api/visiteurs/", Method.PUT);
+            req.RequestFormat = DataFormat.Json;
+
+            req.AddJsonBody(JsonConvert.SerializeObject(visiteur));
+            restClient.Execute(req);
+        }
+
+        // Méthode DELETE
+        public void DeleteVisiteur(int id)
+        {
+            RestRequest req = new RestRequest("api/visiteurs/{id}", Method.DELETE);
+            req.AddUrlSegment("id", id);
+            restClient.Execute(req);
+        }
+
     }
 }
