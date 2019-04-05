@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using suiviA.Commands;
 
-namespace suiviA
+namespace suiviA.UserControls
 {
     /// <summary>
     /// Logique d'interaction pour UserControlMedecins.xaml

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace suiviA
+namespace suiviA.UserControls
 {
     /// <summary>
     /// Logique d'interaction pour UserControlStats.xaml
@@ -28,6 +28,14 @@ namespace suiviA
             Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll();
             Utilisateurs listeVisiteurs = repoUtilisateur.GetVisiteurAll();
             afficherMedecins(listeMedecins, listeVisiteurs);
+
+            string debutPeriode = DebutPeriodeDatePicker.Text;
+            string finPeriode = FinPeriodeDatePicker.Text;
+
+            string jourDeVisite = JourVisiteVisiteurDatePicker.Text;
+
+
+
         }
 
         public void afficherMedecins(Utilisateurs listeMedecins, Utilisateurs listeVisiteurs)
@@ -37,13 +45,15 @@ namespace suiviA
                 foreach (Utilisateur el in listeMedecins.ListeUtilisateurs)
                 {
                     DoctorComboBox.Items.Add(new Utilisateur(
+                        el.id,
                         el.nom,
                         el.prenom,
                         el.identifiant,
                         el.password,
                         el.telephone,
                         el.mail,
-                        int.Parse(el.type.ToString()))).ToString();
+                        int.Parse(el.type.ToString())))
+                        .ToString();
                 }
 
                 foreach (Utilisateur el in listeVisiteurs.ListeUtilisateurs)
@@ -55,9 +65,33 @@ namespace suiviA
                         el.password,
                         el.telephone,
                         el.mail,
-                        int.Parse(el.type.ToString()))).ToString();
+                        int.Parse(el.type.ToString())))
+                        .ToString();
                 }
             }
+        }
+
+        private void DebutPeriodeDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string debutPeriode = DebutPeriodeDatePicker.Text;
+            string finPeriode = FinPeriodeDatePicker.Text;
+            string nomMedecin = DoctorComboBox.Text;
+            StatRequestRepository repoStats = new StatRequestRepository();
+           
+            
+          // StatRequest statRequest = repoStats.RequeteStat;
+            
+
+        }
+
+        private void FinPeriodeDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DoctorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //sender
         }
     }
 }

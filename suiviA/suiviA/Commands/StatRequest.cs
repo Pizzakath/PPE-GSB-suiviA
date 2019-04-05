@@ -18,7 +18,7 @@ namespace suiviA.Commands
 
         }
 
-        public StatRequest(string nom, int id, DateTime debut)
+        public StatRequest(string nom, int id, DateTime dateDebut)
         {
             this.nom = nom;
             this.id = id;

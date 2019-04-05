@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace suiviA
+namespace suiviA.UserControls
 {
     /// <summary>
     /// Logique d'interaction pour UserControlVisites.xaml

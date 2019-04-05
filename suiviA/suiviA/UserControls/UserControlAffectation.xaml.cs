@@ -1,4 +1,5 @@
-﻿using System;
+﻿using suiviA.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,40 @@ namespace suiviA.UserControls
     {
         public UserControlAffectation()
         {
-            InitializeComponent();
+            InitializeComponent(); UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
+            Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll();
+            Utilisateurs listeVisiteurs = repoUtilisateur.GetVisiteurAll();
+            afficherMedecins(listeMedecins, listeVisiteurs);
+        }
+
+        public void afficherMedecins(Utilisateurs listeMedecins, Utilisateurs listeVisiteurs)
+        {
+            if ((listeMedecins.ListeUtilisateurs != null) || (listeVisiteurs.ListeUtilisateurs != null))
+            {
+                foreach (Utilisateur el in listeMedecins.ListeUtilisateurs)
+                {
+                    DoctorComboBox.Items.Add(new Utilisateur(
+                        el.nom,
+                        el.prenom,
+                        el.identifiant,
+                        el.password,
+                        el.telephone,
+                        el.mail,
+                        int.Parse(el.type.ToString()))).ToString();
+                }
+
+                foreach (Utilisateur el in listeVisiteurs.ListeUtilisateurs)
+                {
+                    VisiteurComboBox.Items.Add(new Utilisateur(
+                        el.nom,
+                        el.prenom,
+                        el.identifiant,
+                        el.password,
+                        el.telephone,
+                        el.mail,
+                        int.Parse(el.type.ToString()))).ToString();
+                }
+            }
         }
     }
 }
