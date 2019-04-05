@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace suiviA.Commands
 {
@@ -25,6 +26,22 @@ namespace suiviA.Commands
         public Cabinets GetAll()
         {
             return restClient.Get<Cabinets>(new RestRequest("/api/cabinets")).Data;
+        }
+
+        public void SetMedecinCabinet(int idMedecin, int idCabinet)
+        {
+            RestRequest req = new RestRequest("/api/medecins/cabinets{idCabinet}", Method.POST);
+            req.RequestFormat = DataFormat.Json;
+            req.AddJsonBody(JsonConvert.SerializeObject(idMedecin));
+            restClient.Execute(req);
+        }
+
+        public void CreateCabinet(Cabinet cabinet)
+        {
+            RestRequest req = new RestRequest("api/cabinets", Method.POST);
+            req.RequestFormat = DataFormat.Json;
+            req.AddJsonBody(JsonConvert.SerializeObject(cabinet));
+            restClient.Execute(req);
         }
 
         public Cabinet GetCabinetByIdMedecin(int id)

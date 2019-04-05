@@ -22,18 +22,26 @@ namespace suiviA.Commands
         [DeserializeAs(Name = "numero")]
         public int numero { get; set; }
 
-        [DeserializeAs(Name ="ville")]
+        [DeserializeAs(Name = "rue")]
+        public string rue { get; set; }
+
+        [DeserializeAs(Name = "ville")]
         public string ville { get; set; }
 
-        [DeserializeAs(Name ="nomRegion")]
+        [DeserializeAs(Name = "nomRegion")]
         public string region { get; set; }
 
-        [DeserializeAs(Name ="nomDepartement")]
+        [DeserializeAs(Name = "nomDepartement")]
         public string departement { get; set; }
 
-        public Cabinet()
+        public Cabinet(int numero, string rue, string ville, string nomRegion, string nomDepartement)
         {
-
+            this.adresse = numero.ToString() + " " + rue + " " + ville;
+            this.numero = numero;
+            this.rue = rue;
+            this.ville = ville;
+            this.region = nomRegion;
+            this.departement = nomDepartement;
         }
         //[DeserializeAs(Name = "commune")]
 
