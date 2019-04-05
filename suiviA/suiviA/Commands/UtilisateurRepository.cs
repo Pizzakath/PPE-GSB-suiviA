@@ -24,7 +24,7 @@ namespace suiviA.Commands
         public Utilisateurs GetMedecinAll(Utilisateur uCo)
         {
             RestRequest req = new RestRequest("/api/medecins/{token}");
-            req.AddUrlSegment("token", uCo);
+            req.AddUrlSegment("token", uCo.token);
             return restClient.Get<Utilisateurs>(req).Data;
         }
 
@@ -32,7 +32,7 @@ namespace suiviA.Commands
         {
             RestRequest req = new RestRequest("/api/medecins/{token}/{id}", Method.GET);
             req.AddUrlSegment("id", id);
-            req.AddUrlSegment("token", uCo);
+            req.AddUrlSegment("token", uCo.token);
             var truc = restClient.Get<UtilisateurData>(req);
             return truc.Data.Utilisateur;
         }
@@ -55,7 +55,7 @@ namespace suiviA.Commands
 
         public Utilisateurs GetMedecinVisiteur(int idVisiteur, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/visiteurs/medecins/{token}/{id}");
+            RestRequest req = new RestRequest("api/visiteurs/{token}/medecins/{id}");
             req.AddUrlSegment("id", idVisiteur);
             req.AddUrlSegment("token", uCo.token);
             return restClient.Get<Utilisateurs>(req).Data;
@@ -63,7 +63,7 @@ namespace suiviA.Commands
 
         public void SetMedecinVisiteur(int idVisiteur, int idMedecin, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/visiteurs/medecins/{token}/{id}", Method.POST);
+            RestRequest req = new RestRequest("api/visiteurs/{token}/medecins/{id}", Method.POST);
             req.RequestFormat = DataFormat.Json;
             req.AddUrlSegment("token", uCo.token);
             req.AddJsonBody(JsonConvert.SerializeObject(idMedecin));

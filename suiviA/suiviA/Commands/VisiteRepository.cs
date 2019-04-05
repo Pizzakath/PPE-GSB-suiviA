@@ -23,7 +23,7 @@ namespace suiviA.Commands
 
         public Visites GetVisiteAllByIdMedecin(int id, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/medecins/visites/{token}/{id}");
+            RestRequest req = new RestRequest("api/medecins/{token}/visites/{id}");
             req.AddUrlSegment("id", id);
             req.AddUrlSegment("token", uCo.token);
             var truc = restClient.Get<Visites>(req);
@@ -32,7 +32,7 @@ namespace suiviA.Commands
 
         public Visites GetVisiteAllByIdVisiteur(int id, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("api/visiteurs/visites/{token}/{id}");
+            RestRequest req = new RestRequest("api/visiteurs/{token}/visites/{id}");
             req.AddUrlSegment("id", id);
             req.AddUrlSegment("token", uCo.token);
             var truc = restClient.Get<Visites>(req);

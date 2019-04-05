@@ -33,7 +33,7 @@ namespace suiviA.Commands
 
         public void SetMedecinCabinet(int idMedecin, int idCabinet, Utilisateur uCo)
         {
-            RestRequest req = new RestRequest("/api/medecins/cabinets/{token}/{idCabinet}", Method.POST);
+            RestRequest req = new RestRequest("/api/medecins/{token}/cabinets/{idCabinet}", Method.POST);
             req.RequestFormat = DataFormat.Json;
             req.AddUrlSegment("token", uCo.token);
             req.AddJsonBody(JsonConvert.SerializeObject(idMedecin));
