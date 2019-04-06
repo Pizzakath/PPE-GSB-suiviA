@@ -18,8 +18,8 @@
                 <Label x:Name="NbVisitesMedecinLabel" Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,0,0,0" FontWeight="Bold" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
-                <ComboBox x:Name="VisiteurComboBox" materialDesign:HintAssist.Hint="Quel Visiteur ?" Width="150" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="220,0,0,0" VerticalAlignment="Bottom" Foreground="Black" />
-                <DatePicker x:Name="JourVisiteVisiteurDatePicker" Width="131" materialDesign:HintAssist.Hint="Jour de visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="50,0,0,0" VerticalAlignment="Bottom" Language="Fr" />
+                <ComboBox x:Name="VisiteurComboBox" SelectionChanged="VisiteurComboBox_SelectionChanged" materialDesign:HintAssist.Hint="Quel Visiteur ?" Width="150" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="220,0,0,0" VerticalAlignment="Bottom" Foreground="Black" />
+                <DatePicker x:Name="JourVisiteVisiteurDatePicker" SelectedDateChanged="JourVisiteVisiteurDatePicker_SelectedDateChanged"  Width="131" materialDesign:HintAssist.Hint="Jour de visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="50,0,0,0" VerticalAlignment="Bottom" Language="Fr" />
                 <Label Content="Nombre de visites par visiteur par jour :" Height="24" VerticalAlignment="Bottom" Margin="50,0,0,0" />
                 <Label Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,0,0,0" FontWeight="Bold" />
             </StackPanel>

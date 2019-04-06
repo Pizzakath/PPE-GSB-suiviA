@@ -8,10 +8,13 @@ namespace suiviA.Commands
 {
     class StatRequest
     {
-        public string nom { get; set; }
+        public string reqName { get; set; }
         public int id { get; set; }
-        public DateTime dateDebut { get; set; }
-        public DateTime dateFin { get; set; }
+
+        // Date de début
+        public DateTime date1 { get; set; }
+        // Date de fin
+        public DateTime date2 { get; set; }
 
         public StatRequest()
         {
@@ -20,17 +23,17 @@ namespace suiviA.Commands
 
         public StatRequest(string nom, int id, DateTime dateDebut)
         {
-            this.nom = nom;
+            this.reqName = nom;
             this.id = id;
-            this.dateDebut = dateDebut;
+            this.date1 = dateDebut;
         }
 
         public StatRequest(string nom, int id, DateTime dateDebut, DateTime dateFin)
         {
-            this.nom = nom;
+            this.reqName = nom;
             this.id = id;
-            this.dateDebut = dateDebut;
-            this.dateFin = dateFin;
+            this.date1 = dateDebut;
+            this.date2 = dateFin;
         }
     }
 }

@@ -21,27 +21,21 @@ namespace suiviA.UserControls
     /// </summary>
     public partial class UserControlStats : UserControl
     {
+        private Utilisateur _user {get;set;}
         public UserControlStats(Utilisateur _utilisateur)
         {
+            _user = _utilisateur;
             InitializeComponent();
             UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
-            Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll(_utilisateur);
-            Utilisateurs listeVisiteurs = repoUtilisateur.GetVisiteurAll(_utilisateur);
+            Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll(_user);
+            Utilisateurs listeVisiteurs = repoUtilisateur.GetVisiteurAll(_user);
             afficherMedecins(listeMedecins, listeVisiteurs);
-
-            string debutPeriode = DebutPeriodeDatePicker.Text;
-            string finPeriode = FinPeriodeDatePicker.Text;
-
-            string jourDeVisite = JourVisiteVisiteurDatePicker.Text;
-
-
-
         }
 
         public void afficherMedecins(Utilisateurs listeMedecins, Utilisateurs listeVisiteurs)
         {
-            //if ((listeMedecins.ListeUtilisateurs != null) || (listeVisiteurs.ListeUtilisateurs != null))
-            //{
+            if ((listeMedecins.ListeUtilisateurs != null) || (listeVisiteurs.ListeUtilisateurs != null))
+            {
                 foreach (Utilisateur el in listeMedecins.ListeUtilisateurs)
                 {
                     DoctorComboBox.Items.Add(new Utilisateur(
@@ -59,6 +53,7 @@ namespace suiviA.UserControls
                 foreach (Utilisateur el in listeVisiteurs.ListeUtilisateurs)
                 {
                     VisiteurComboBox.Items.Add(new Utilisateur(
+                        el.id,
                         el.nom,
                         el.prenom,
                         el.identifiant,
@@ -68,31 +63,74 @@ namespace suiviA.UserControls
                         int.Parse(el.type.ToString())))
                         .ToString();
                 }
-            //}
+            }
         }
 
+        #region SelectedChanges
         private void DebutPeriodeDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            string debutPeriode = DebutPeriodeDatePicker.Text;
-            string finPeriode = FinPeriodeDatePicker.Text;
-            string nomMedecin = DoctorComboBox.Text;
-            
-            StatRequestRepository repoStats = new StatRequestRepository();
-           
-            
-          // StatRequest statRequest = repoStats.RequeteStat;
-            
-
+            get_NbVisitesParJourParMedecin();
         }
 
         private void FinPeriodeDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            get_NbVisitesParJourParMedecin();
         }
 
         private void DoctorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //sender
+            get_NbVisitesParJourParMedecin();
         }
+
+        private void VisiteurComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            get_NombreVisiteParVisiteurParJour();
+        }
+
+        private void JourVisiteVisiteurDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            get_NombreVisiteParVisiteurParJour();
+        }
+
+        #endregion
+
+
+        #region RecupValeursStats
+
+        private void get_NbVisitesParJourParMedecin()
+        {
+            if (DebutPeriodeDatePicker.Text != string.Empty && FinPeriodeDatePicker.Text != string.Empty && DoctorComboBox.Text != string.Empty)
+            {
+                string debutPeriode = DebutPeriodeDatePicker.Text;
+                string finPeriode = FinPeriodeDatePicker.Text;
+
+                Utilisateur medecin = (Utilisateur)DoctorComboBox.SelectedItem;
+                int idMedecin = medecin.id;
+
+                StatRequestRepository repoStats = new StatRequestRepository();
+                StatRequest statRequest = new StatRequest("GetVisiteMedecin", idMedecin, DateTime.Parse(debutPeriode), DateTime.Parse(finPeriode));
+
+                int nombreVisitesParJourParMedecin = repoStats.RequeteStat(statRequest, _user);
+                NbVisitesMedecinLabel.Content = nombreVisitesParJourParMedecin.ToString();
+            }
+        }
+
+        private void get_NombreVisiteParVisiteurParJour()
+        {
+            if(VisiteurComboBox.Text != string.Empty && JourVisiteVisiteurDatePicker.Text != null)
+            {
+                Utilisateur visiteur = (Utilisateur)VisiteurComboBox.SelectedItem;
+                int idVisiteur = visiteur.id;
+
+                StatRequestRepository repoStats = new StatRequestRepository();
+                StatRequest statRequest = new StatRequest("GetVisiteVisiteur", idVisiteur, DateTime.Parse(JourVisiteVisiteurDatePicker.Text));
+
+                int nombreVisitesParVisiteurParJour = repoStats.RequeteStat(statRequest, _user);
+                TempsMoyenEntretienLabel.Content = nombreVisitesParVisiteurParJour.ToString();
+            }
+        }
+
+        #endregion
+
     }
 }

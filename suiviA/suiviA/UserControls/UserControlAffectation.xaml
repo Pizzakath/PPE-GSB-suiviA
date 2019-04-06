@@ -17,7 +17,7 @@
                 </ComboBox>
             </StackPanel>
             <StackPanel Margin="0,100,0,0">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" ToolTip="Resource name: MaterialDesignRaisedLightButton" Height="64" Margin="475,0,299.6,0" Content="AFFECTER
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="ButtonAffecter_Click" ToolTip="Resource name: MaterialDesignRaisedLightButton" Height="64" Margin="475,0,299.6,0" Content="AFFECTER
 "/>
             </StackPanel>
         </StackPanel>

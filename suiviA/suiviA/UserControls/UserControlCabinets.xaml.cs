@@ -79,16 +79,8 @@ namespace suiviA.UserControls
             }
             else
             {
-                MessageBox.Show("Un champs est manquant ou mal renseigné");
+                MessageBox.Show("Un champ est manquant ou mal renseigné");
             }
-            
-            //string _numero = numeroCabinetTextBox.Text;
-            //string _rue = rueCabinetTextBox.Text;
-            //string _ville = villeCabinetTextBox.Text;
-            //string _region = regionCabinetTextBox.Text;
-            //string _departement = departementCabinetTextBox.Text;
-
-
 
         }
     }

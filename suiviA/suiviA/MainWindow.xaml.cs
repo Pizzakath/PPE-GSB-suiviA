@@ -30,11 +30,10 @@ namespace suiviA
             InitializeComponent();
             _user = utilisateur;
 
+            userTextBox.Text = _user.nom + " " + _user.prenom;
+
             GridMain.Children.Add(new UserControlStats(_user));
             AfficherOnglets(_user.type);
-
-
-
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -88,7 +87,7 @@ namespace suiviA
             switch (typeUtilisateur)
             {
                 // 1 = Administrateur
-                case 0:
+                case 1:
                     ItemVisite.Visibility = Visibility.Collapsed;
                     ItemStats.Visibility = Visibility.Visible;
                     ItemMedecin.Visibility = Visibility.Visible;
@@ -96,7 +95,7 @@ namespace suiviA
                     ItemAffectation.Visibility = Visibility.Visible;
                     break;
                 // 2 = Médecin
-                case 1:
+                case 2:
                     ItemVisite.Visibility = Visibility.Visible;
                     ItemStats.Visibility = Visibility.Visible;
                     ItemMedecin.Visibility = Visibility.Collapsed;
@@ -104,7 +103,7 @@ namespace suiviA
                     ItemAffectation.Visibility = Visibility.Collapsed;
                     break;
                 // 3 = Visiteur
-                case 2:
+                case 3:
                     ItemVisite.Visibility = Visibility.Visible;
                     ItemStats.Visibility = Visibility.Visible;
                     ItemMedecin.Visibility = Visibility.Collapsed;
@@ -114,6 +113,18 @@ namespace suiviA
                 default:
                     break;
             }
+        }
+
+        private void ButtonDeconnexion_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
+        }
+
+        private void ButtonQuitter_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -42,10 +42,9 @@
                 <TextBlock x:Name="userTextBox" Text="NOM Prenom" VerticalAlignment="Center" FontSize="16"/>
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150">
-                        <Button Content="Settings"/>
-                        <Button Content="Account"/>
+                        <Button Content="Déconnexion" Click="ButtonDeconnexion_Click"/>
                         <Separator/>
-                        <Button Content="Déconnexion"/>
+                        <Button Content="Quitter" Click="ButtonQuitter_Click"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
@@ -108,7 +107,7 @@
                     </ListViewItem>
                     <ListViewItem x:Name="ItemAffectation" Height="60">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="AccountHeart" Height="25" Width="25" Margin="10"/>
+                            <materialDesign:PackIcon Kind="AccountArrowRight" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Affecter" VerticalAlignment="Center"  Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>

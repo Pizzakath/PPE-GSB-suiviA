@@ -61,12 +61,16 @@ namespace suiviA.Commands
             return restClient.Get<Utilisateurs>(req).Data;
         }
 
-        public void SetMedecinVisiteur(int idVisiteur, int idMedecin, Utilisateur uCo)
+        public void SetMedecinVisiteur(int idVisiteur, int id, Utilisateur uCo)
         {
+            Utilisateur utilisateur = new Utilisateur();
+            utilisateur.id = id;
+
             RestRequest req = new RestRequest("api/visiteurs/{token}/medecins/{id}", Method.POST);
             req.RequestFormat = DataFormat.Json;
             req.AddUrlSegment("token", uCo.token);
-            req.AddJsonBody(JsonConvert.SerializeObject(idMedecin));
+            req.AddUrlSegment("id", idVisiteur);
+            req.AddJsonBody(JsonConvert.SerializeObject(utilisateur));
             restClient.Execute(req);
         }
 

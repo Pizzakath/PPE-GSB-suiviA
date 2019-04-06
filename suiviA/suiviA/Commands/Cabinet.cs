@@ -57,6 +57,11 @@ namespace suiviA.Commands
         //[DeserializeAs(Name = "commune")]
 
 
+        public override string ToString()
+        {
+            return $"{this.numero} rue {this.rue}, {this.ville}";
+        }
+
 
     }
 

@@ -21,9 +21,13 @@ namespace suiviA.UserControls
     /// </summary>
     public partial class UserControlAffectation : UserControl
     {
+        private Utilisateur _user { get; set; }
+
         public UserControlAffectation(Utilisateur utilisateur)
         {
-            InitializeComponent(); UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
+            _user = utilisateur;
+            InitializeComponent();
+            UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
             Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll(utilisateur);
             Utilisateurs listeVisiteurs = repoUtilisateur.GetVisiteurAll(utilisateur);
             afficherMedecins(listeMedecins, listeVisiteurs);
@@ -36,6 +40,7 @@ namespace suiviA.UserControls
                 foreach (Utilisateur el in listeMedecins.ListeUtilisateurs)
                 {
                     DoctorComboBox.Items.Add(new Utilisateur(
+                        el.id,
                         el.nom,
                         el.prenom,
                         el.identifiant,
@@ -48,6 +53,7 @@ namespace suiviA.UserControls
                 foreach (Utilisateur el in listeVisiteurs.ListeUtilisateurs)
                 {
                     VisiteurComboBox.Items.Add(new Utilisateur(
+                        el.id,
                         el.nom,
                         el.prenom,
                         el.identifiant,
@@ -57,6 +63,18 @@ namespace suiviA.UserControls
                         int.Parse(el.type.ToString()))).ToString();
                 }
             }
+        }
+
+        private void ButtonAffecter_Click(object sender, RoutedEventArgs e)
+        {
+            Utilisateur medecin = (Utilisateur) DoctorComboBox.SelectedItem;
+            int idMedecin = medecin.id;
+
+            Utilisateur visiteur = (Utilisateur) VisiteurComboBox.SelectedItem;
+            int idVisiteur = visiteur.id;
+            UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
+            repoUtilisateur.SetMedecinVisiteur(idVisiteur, idMedecin, _user);
+            MessageBox.Show("Affecté");
         }
     }
 }

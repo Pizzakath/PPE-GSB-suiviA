@@ -23,7 +23,7 @@ namespace suiviA.Commands
             req.RequestFormat = DataFormat.Json;
             req.AddUrlSegment("token", uCo.token);
             req.AddJsonBody(JsonConvert.SerializeObject(statRequete));
-            var truc = restClient.Get<int>(req).Data;
+            var truc = restClient.Post<int>(req).Data;
             return truc;
         }
     }

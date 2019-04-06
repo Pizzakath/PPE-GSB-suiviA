@@ -43,13 +43,25 @@ namespace suiviA.Commands
 
         public Visite()
         {
-            // TODO: FILS DE PUTE
+            // Default
         }
 
         public Visite(int id, int idVisiteur, int idMedecin, DateTime date, bool surRDV, DateTime heureArrivee
             , DateTime HeureDebut, DateTime heureDepart)
         {
             this.id = id;
+            this.idMedecin = idMedecin;
+            this.idVisiteur = idVisiteur;
+            this.date = date;
+            this.surRDV = surRDV;
+            this.heureArrivee = heureArrivee;
+            this.heureDebut = heureDebut;
+            this.heureDepart = heureDepart;
+        }
+
+        public Visite(int idVisiteur, int idMedecin, DateTime date, bool surRDV, DateTime heureArrivee
+            , DateTime HeureDebut, DateTime heureDepart)
+        {
             this.idMedecin = idMedecin;
             this.idVisiteur = idVisiteur;
             this.date = date;
