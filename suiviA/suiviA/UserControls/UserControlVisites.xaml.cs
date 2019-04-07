@@ -35,7 +35,8 @@ namespace suiviA.UserControls
                 DialogHostButton.Visibility = Visibility.Collapsed;
                 // TODO: A passer à 1 quand ce sera le nom/prénom et non l'id
                 ColHeaderVisiteur.Width = 0;
-
+                VisitListView.Width = double.NaN;
+                VisitListView.Margin = new Thickness(370, 0, 0, 0);
                 ColHeaderModifBtn.Width = 0;
                 ColHeaderDelBtn.Width = 0;
                 ColHeaderMedecin.Width = 0;
@@ -46,6 +47,7 @@ namespace suiviA.UserControls
             {
                 ColHeaderMedecin.Width = double.NaN;
                 ColHeaderVisiteur.Width = 0;
+                VisitListView.Margin = new Thickness(170,0,0,0);
                 Visites listeVisites = repoVisite.GetVisiteAllByIdVisiteur(_user.id, _user);
                 Utilisateurs listeMedecins = repoUtilisateur.GetMedecinVisiteur(_user.id, _user);
                 afficherListe(listeVisites.ListeVisites, listeMedecins);

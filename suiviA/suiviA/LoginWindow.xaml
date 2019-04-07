@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Icon="/Images/logoGSB.png"
-        Title="Page de Connexion" Height="500" Width="500">
+        Title="Page de Connexion" WindowStartupLocation="CenterScreen" Height="500" Width="500">
 
     <Grid>
         <Rectangle Height="280" VerticalAlignment="Top">

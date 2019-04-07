@@ -10,6 +10,7 @@
     <Grid Background="White">
         <StackPanel>
             <Label Content="Statistiques" FontSize="24" Foreground="#FF1976D2" FontWeight="Bold" Margin="504,20,364.6,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Content="Partie Médecin" VerticalAlignment="Center" Margin="505,30,366.6,0" FontSize="16" FontWeight="Bold" FontFamily="Algerian" Height="28" HorizontalAlignment="Center" />
             <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
                 <ComboBox x:Name="DoctorComboBox" SelectionChanged="DoctorComboBox_SelectionChanged" materialDesign:HintAssist.Hint="Quel Médecin ?" Width="150" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="220,0,0,0" VerticalAlignment="Bottom" Foreground="Black" />
                 <DatePicker x:Name="DebutPeriodeDatePicker" Width="131" SelectedDateChanged="DebutPeriodeDatePicker_SelectedDateChanged" materialDesign:HintAssist.Hint="Début de période" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="50,0,0,0" VerticalAlignment="Bottom" Language="Fr" />
@@ -18,20 +19,21 @@
                 <Label x:Name="NbVisitesMedecinLabel" Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,0,0,0" FontWeight="Bold" />
             </StackPanel>
             <Separator Height="50"/>
-            <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
-                <ComboBox x:Name="VisiteurComboBox" SelectionChanged="VisiteurComboBox_SelectionChanged" materialDesign:HintAssist.Hint="Quel Visiteur ?" Width="150" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="220,0,0,0" VerticalAlignment="Bottom" Foreground="Black" />
+            <Label Content="Partie Visiteur" VerticalAlignment="Center" Margin="505,-7,354.6,0" FontSize="16" FontWeight="Bold" FontFamily="Algerian" Height="28" HorizontalAlignment="Center" Width="150" />
+            <StackPanel Orientation="Horizontal" Margin="210,14,179.6,0">
+                <ComboBox x:Name="VisiteurComboBox" SelectionChanged="VisiteurComboBox_SelectionChanged" materialDesign:HintAssist.Hint="Quel Visiteur ?" Width="150" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="206,0,0,0" VerticalAlignment="Bottom" Foreground="Black" />
                 <DatePicker x:Name="JourVisiteVisiteurDatePicker" SelectedDateChanged="JourVisiteVisiteurDatePicker_SelectedDateChanged"  Width="131" materialDesign:HintAssist.Hint="Jour de visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="50,0,0,0" VerticalAlignment="Bottom" Language="Fr" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Temps moyen d'une visite :" Height="24" VerticalAlignment="Bottom" Margin="220,40,0,0" />
+            <StackPanel Orientation="Horizontal" Margin="0">
+                <Label Content="Temps moyen d'une visite :" Height="24" VerticalAlignment="Center" Margin="492,40,0,0" HorizontalAlignment="Center" />
                 <Label x:Name="TempsMoyenVisiteLabel" Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,40,0,0" FontWeight="Bold" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Nombre de visites par visiteur par jour :" Height="24" VerticalAlignment="Bottom" Margin="220,40,0,0" />
+                <Label Content="Nombre de visites par visiteur par jour :" Height="24" VerticalAlignment="Bottom" Margin="471,40,0,0" />
                 <Label x:Name="nombreVisiteParVisiteurParJourLabel" Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,40,0,0" FontWeight="Bold" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Temps d'attente moyen :" Height="24" VerticalAlignment="Bottom" Margin="220,40,0,0" />
+                <Label Content="Temps d'attente moyen :" Height="24" VerticalAlignment="Bottom" Margin="504,40,0,0" />
                 <Label x:Name="TempsAttenteMoyenLabel" Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,40,0,0" FontWeight="Bold" />
             </StackPanel>
         </StackPanel>

@@ -9,7 +9,7 @@
        d:DesignHeight="540" d:DesignWidth="1010">
     <Grid Background="WhiteSmoke">
         <StackPanel>
-            <Label Content="Liste des Visites" FontSize="24" Foreground="#FF1976D2" FontWeight="Bold" Margin="459,20,363.6,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Content="Liste des Visites" FontSize="24" Foreground="#FF1976D2" FontWeight="Bold" Margin="476,20,344.6,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="189"/>
             <StackPanel>
                 <ListView Name="VisitListView" HorizontalAlignment="Left" Height="468" VerticalAlignment="Top" Width="740" Margin="170,0,0,0" >
                     <ListView.View>

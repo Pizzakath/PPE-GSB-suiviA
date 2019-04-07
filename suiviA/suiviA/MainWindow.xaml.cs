@@ -48,6 +48,7 @@ namespace suiviA
             ButtonOpenMenu.Visibility = Visibility.Visible;
         }
 
+        #region Gestion des affichages d'onglets
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UserControl usc = null;
@@ -114,6 +115,7 @@ namespace suiviA
                     break;
             }
         }
+        #endregion
 
         private void ButtonDeconnexion_Click(object sender, RoutedEventArgs e)
         {

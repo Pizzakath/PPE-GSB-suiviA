@@ -25,17 +25,17 @@ namespace suiviA
             InitializeComponent();
         }
 
-        
-       // Login login = new Login("Admin", "Admin0", 2);
-
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             string user = usernameTextBox.Text;
             string pass = passwordTextBox.Password;
 
             UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
+
             Utilisateur utilisateur = repoUtilisateur.Connexion(user, pass);
+
             utilisateur.token = repoUtilisateur.Connexion(user, pass).token;
+            
             
             if (utilisateur != null)
             {
@@ -49,20 +49,6 @@ namespace suiviA
                 MessageBox.Show("Adrien est pd car Utilisateur est NULL");
                 
             }
-
-            //if (login.IsLoggedIn(user, pass))
-            //{
-            //    MessageBox.Show("You are logged in successfully");
-            //    MainWindow mainWindow = new MainWindow(login.Role);
-
-            //    mainWindow.Show();
-            //    Close();
-            //}
-            //else
-            //{
-            //    //show default login error message
-            //    MessageBox.Show("Login Error!");
-            //}
         }
     }
 }
