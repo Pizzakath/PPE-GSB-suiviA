@@ -17,19 +17,18 @@
                 <Label Content="Nombre de visites : " Height="24" VerticalAlignment="Bottom" Margin="50,0,0,0" />
                 <Label x:Name="NbVisitesMedecinLabel" Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,0,0,0" FontWeight="Bold" />
             </StackPanel>
+            <Separator Height="50"/>
             <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
                 <ComboBox x:Name="VisiteurComboBox" SelectionChanged="VisiteurComboBox_SelectionChanged" materialDesign:HintAssist.Hint="Quel Visiteur ?" Width="150" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="220,0,0,0" VerticalAlignment="Bottom" Foreground="Black" />
                 <DatePicker x:Name="JourVisiteVisiteurDatePicker" SelectedDateChanged="JourVisiteVisiteurDatePicker_SelectedDateChanged"  Width="131" materialDesign:HintAssist.Hint="Jour de visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="50,0,0,0" VerticalAlignment="Bottom" Language="Fr" />
-                <Label Content="Nombre de visites par visiteur par jour :" Height="24" VerticalAlignment="Bottom" Margin="50,0,0,0" />
-                <Label Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,0,0,0" FontWeight="Bold" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Temps moyen d'un entretien :" Height="24" VerticalAlignment="Bottom" Margin="220,40,0,0" />
-                <Label x:Name="TempsMoyenEntretienLabel" Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,40,0,0" FontWeight="Bold" />
+                <Label Content="Temps moyen d'une visite :" Height="24" VerticalAlignment="Bottom" Margin="220,40,0,0" />
+                <Label x:Name="TempsMoyenVisiteLabel" Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,40,0,0" FontWeight="Bold" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Nombre de visites par visiteur par jour :" Height="24" VerticalAlignment="Bottom" Margin="220,40,0,0" />
-                <Label x:Name="NbVisitesParVisiteurJour" Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,40,0,0" FontWeight="Bold" />
+                <Label x:Name="nombreVisiteParVisiteurParJourLabel" Content="?" Height="24" VerticalAlignment="Bottom" Margin="5,40,0,0" FontWeight="Bold" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Temps d'attente moyen :" Height="24" VerticalAlignment="Bottom" Margin="220,40,0,0" />

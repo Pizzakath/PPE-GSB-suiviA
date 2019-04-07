@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,21 +39,65 @@ namespace suiviA.UserControls
         {
             if (listeCabinets.ListeCabinet != null)
             {
+                ObservableCollection<Cabinet> listCabinets = new ObservableCollection<Cabinet>();
+
                 foreach (Cabinet el in listeCabinets.ListeCabinet)
                 {
-                    CabinetListView.Items.Add(new Cabinet(
+                    Cabinet cabinet = new Cabinet(
                         el.id,
                         el.numero,
                         el.rue,
                         el.ville,
                         el.nomRegion,
                         el.nomDepartement
-                        ));
+                    );
+
+                    listCabinets.Add(cabinet);
                 }
+
+                CabinetListView.ItemsSource = listCabinets;
             }
         }
 
-        private void ButtonAjouterCabinet_Click(object sender, RoutedEventArgs e)
+        private void EditCabinet(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            Cabinet cabinet = b.CommandParameter as Cabinet;
+            
+            // Ouvrir le DialogHost
+            CabinetDialogHost.IsOpen = true;
+            DialogCabinetTitle.Content = "Modifier un Cabinet";
+
+            AjouterDialogButton.Visibility = Visibility.Collapsed;
+            ModifierDialogButton.Visibility = Visibility.Visible;
+
+            
+            // Afficher les infos
+            idCabinetLabel.Content = cabinet.id;
+            numeroCabinetTextBox.Text = cabinet.numero.ToString();
+            rueCabinetTextBox.Text = cabinet.rue;
+            villeCabinetTextBox.Text = cabinet.ville;
+            regionCabinetTextBox.Text = cabinet.nomRegion;
+            departementCabinetTextBox.Text = cabinet.nomDepartement;
+        }
+
+        private void ButtonClick_AjouterCabinetDialog(object sender, RoutedEventArgs e)
+        {
+            AjouterDialogButton.Visibility = Visibility.Visible;
+            ModifierDialogButton.Visibility = Visibility.Collapsed;
+
+            // Ouvrir le DialogHost
+            CabinetDialogHost.IsOpen = true;
+            DialogCabinetTitle.Content = "Ajouter un Cabinet";
+
+            numeroCabinetTextBox.Text = "";
+            rueCabinetTextBox.Text = "";
+            villeCabinetTextBox.Text = "";
+            regionCabinetTextBox.Text = "";
+            departementCabinetTextBox.Text = "";
+        }
+
+        private void ButtonClick_AjouterCabinet(object sender, RoutedEventArgs e)
         {
             if((numeroCabinetTextBox.Text != null) && (rueCabinetTextBox != null) 
                 && (villeCabinetTextBox != null) && (regionCabinetTextBox != null) 
@@ -60,11 +105,11 @@ namespace suiviA.UserControls
                 )
             {
                 Cabinet nouveauCabinet = new Cabinet(
-                int.Parse(numeroCabinetTextBox.Text),
-                rueCabinetTextBox.Text,
-                villeCabinetTextBox.Text,
-                regionCabinetTextBox.Text,
-                departementCabinetTextBox.Text
+                    int.Parse(numeroCabinetTextBox.Text),
+                    rueCabinetTextBox.Text,
+                    villeCabinetTextBox.Text,
+                    regionCabinetTextBox.Text,
+                    departementCabinetTextBox.Text
                 );
 
                 CabinetRepository cabinetRepository = new CabinetRepository();
@@ -74,7 +119,6 @@ namespace suiviA.UserControls
 
                 Cabinets listeCabinets = cabinetRepository.GetAll(_user);
                 CabinetDialogHost.IsOpen = false;
-                CabinetListView.Items.Clear();
                 afficherListe(listeCabinets);
             }
             else
@@ -82,6 +126,38 @@ namespace suiviA.UserControls
                 MessageBox.Show("Un champ est manquant ou mal renseigné");
             }
 
+        }
+
+        public void ButtonClick_ModifierCabinet(object sender, RoutedEventArgs e)
+        {
+            int idCabinet = int.Parse(idCabinetLabel.Content.ToString());
+
+            if ((numeroCabinetTextBox.Text != null) && (rueCabinetTextBox != null)
+                && (villeCabinetTextBox != null) && (regionCabinetTextBox != null)
+                && (departementCabinetTextBox != null)
+                )
+            {
+                Cabinet nouveauCabinet = new Cabinet(
+                    idCabinet,
+                    int.Parse(numeroCabinetTextBox.Text),
+                    rueCabinetTextBox.Text,
+                    villeCabinetTextBox.Text,
+                    regionCabinetTextBox.Text,
+                    departementCabinetTextBox.Text
+                );
+
+                CabinetRepository cabinetRepository = new CabinetRepository();
+                cabinetRepository.UpdateCabinet(nouveauCabinet, _user);
+
+                MessageBox.Show("Cabinet modifié !");
+
+                Cabinets listeCabinets = cabinetRepository.GetAll(_user);
+                afficherListe(listeCabinets);
+            }
+            else
+            {
+                MessageBox.Show("Un champ est manquant ou mal renseigné");
+            }
         }
     }
 }

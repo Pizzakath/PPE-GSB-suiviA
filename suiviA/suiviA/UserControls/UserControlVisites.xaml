@@ -11,15 +11,30 @@
         <StackPanel>
             <Label Content="Liste des Visites" FontSize="24" Foreground="#FF1976D2" FontWeight="Bold" Margin="459,20,363.6,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <StackPanel>
-                <ListView Name="VisitListView" HorizontalAlignment="Left" Height="468" VerticalAlignment="Top" Width="830" Margin="40,0,0,0" >
+                <ListView Name="VisitListView" HorizontalAlignment="Left" Height="468" VerticalAlignment="Top" Width="740" Margin="170,0,0,0" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="idMedecin"  DisplayMemberBinding="{Binding idMedecin}"/>
-                            <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding date}"/>
-                            <GridViewColumn Header="Sur RDV ? "  DisplayMemberBinding="{Binding surRDV}"/>
-                            <GridViewColumn Header="Heure d'arrivée"  DisplayMemberBinding="{Binding heureArrivee}"/>
-                            <GridViewColumn Header="Heure de début d'entretien"  DisplayMemberBinding="{Binding heureDebut}"/>
-                            <GridViewColumn Header="Heure de départ du cabinet"  DisplayMemberBinding="{Binding heureDepart}"/>
+                            <GridViewColumn x:Name="ColHeaderMedecin" Header="Medecin"  DisplayMemberBinding="{Binding nomMedecin}"/>
+                            <GridViewColumn x:Name="ColHeaderVisiteur" Header="Visiteur"  DisplayMemberBinding="{Binding nomVisiteur}"/>
+                            <GridViewColumn x:Name="ColHeaderDate" Header="Date"  DisplayMemberBinding="{Binding date, StringFormat=dd-MM-yyyy}"  />
+                            <GridViewColumn x:Name="ColHeaderRDV" Header="Sur RDV ? "  DisplayMemberBinding="{Binding surRDV}"/>
+                            <GridViewColumn x:Name="ColHeaderArrivee" Header="Arrivée"  DisplayMemberBinding="{Binding heureArrivee, StringFormat=HH:mm}"/>
+                            <GridViewColumn x:Name="ColHeaderDebut" Header="Début"  DisplayMemberBinding="{Binding heureDebut, StringFormat=HH:mm}"/>
+                            <GridViewColumn x:Name="ColHeaderDepart" Header="Départ"  DisplayMemberBinding="{Binding heureDepart, StringFormat=HH:mm}"/>
+                            <GridViewColumn x:Name="ColHeaderModifBtn">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Modifier" Click="EditVisite" CommandParameter="{Binding}" Background="#FFE2A92D" BorderBrush="#FFEABE5E"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn x:Name="ColHeaderDelBtn">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Supprimer" Click="DeleteVisite" CommandParameter="{Binding}" Background="#FFD01313" BorderBrush="#FFD63E3E"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -27,11 +42,12 @@
         </StackPanel>
 
 
-        <materialDesign:DialogHost IsOpen="False" CloseOnClickAway="True">
+        <materialDesign:DialogHost x:Name="VisiteDialogHost" IsOpen="false" CloseOnClickAway="True">
             <materialDesign:DialogHost.DialogContent >
                 <Grid Width="300" Height="400">
                     <StackPanel>
-                        <Label x:Name="AddVisitTitle" FontSize="24" Width="200" Margin="0,25,0,20">Ajouter une visite</Label>
+                        <Label x:Name="idVisiteLabel"  Visibility="Collapsed" />
+                        <Label x:Name="VisiteDialogTitle" FontSize="24" Width="200" Margin="0,25,0,20">Ajouter une visite</Label>
                         <ComboBox x:Name="DoctorComboBox" materialDesign:HintAssist.Hint="Quel Médecin ?" Width="250" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
                         <StackPanel Orientation="Horizontal" Margin="5,25,5,0">
                             <DatePicker x:Name="dateVisiteDatePicker" Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Date de Visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Language="Fr" />
@@ -39,26 +55,27 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5,25,5,20">
                             <materialDesign:TimePicker x:Name="heureDebutTimePicker" Is24Hours="True" Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Heure de Début" Style="{StaticResource MaterialDesignFloatingHintTimePicker}"/>
-                            <materialDesign:TimePicker x:Name="heureFinTimePicker" Is24Hours="True"  Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure de Fin" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0"/>
+                            <materialDesign:TimePicker x:Name="heureDepartTimePicker" Is24Hours="True"  Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure de Fin" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0"/>
                         </StackPanel>
                         <ComboBox x:Name="rdvComboBox" materialDesign:HintAssist.Hint="Visite sur rendez-vous ?" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="5,10,175.4,0">
-                            <ComboBoxItem IsSelected="True">
+                            <ComboBoxItem x:Name="rdvOuiComboBox">
                                 Oui
                             </ComboBoxItem>
-                            <ComboBoxItem>
+                            <ComboBoxItem x:Name="rdvNonComboBox">
                                 Non
                             </ComboBoxItem>
                         </ComboBox>
                         <!--BOUTONS-->
                         <StackPanel Orientation="Horizontal" Margin="0,30,0,30" Height="50">
                             <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Retour"/>
-                            <Button IsDefault="True" Click="ButtonClick_AjouterVisite" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Ajouter"/>
+                            <Button x:Name="AjouterDialogButton" IsDefault="True" Click="ButtonClick_AjouterVisite" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Ajouter"/>
+                            <Button x:Name="ModifierDialogButton" IsDefault="True" Visibility="Collapsed" Click="ButtonClick_ModifierVisite" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Modifier"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
             </materialDesign:DialogHost.DialogContent>
-            <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                            ToolTip="MaterialDesignFloatingActionLightButton" Margin="913,448,41,36" Background="#FF557FF0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+            <Button x:Name="DialogHostButton" Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                            ToolTip="MaterialDesignFloatingActionLightButton" Margin="913,448,41,36" Background="#FF557FF0" Click="ButtonClick_AjouterVisiteDialog">
                 <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
             </Button>
         </materialDesign:DialogHost>

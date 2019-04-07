@@ -41,13 +41,18 @@ namespace suiviA.Commands
         [DeserializeAs(Name = "heureDepart")]
         public DateTime heureDepart { get; set; }
 
+        // Nom du médecin
+        [DeserializeAs(Name = "nomMedecin")]
+        public string nomMedecin { get; set; }
+
+
         public Visite()
         {
             // Default
         }
 
         public Visite(int id, int idVisiteur, int idMedecin, DateTime date, bool surRDV, DateTime heureArrivee
-            , DateTime HeureDebut, DateTime heureDepart)
+            , DateTime heureDebut, DateTime heureDepart)
         {
             this.id = id;
             this.idMedecin = idMedecin;
@@ -60,7 +65,7 @@ namespace suiviA.Commands
         }
 
         public Visite(int idVisiteur, int idMedecin, DateTime date, bool surRDV, DateTime heureArrivee
-            , DateTime HeureDebut, DateTime heureDepart)
+            , DateTime heureDebut, DateTime heureDepart)
         {
             this.idMedecin = idMedecin;
             this.idVisiteur = idVisiteur;
@@ -70,6 +75,21 @@ namespace suiviA.Commands
             this.heureDebut = heureDebut;
             this.heureDepart = heureDepart;
         }
+
+        public Visite(int id, int idVisiteur, int idMedecin, DateTime date, bool surRDV, DateTime heureArrivee
+            , DateTime heureDebut, DateTime heureDepart, string nomMedecin)
+        {
+            this.id = id;
+            this.idMedecin = idMedecin;
+            this.idVisiteur = idVisiteur;
+            this.date = date;
+            this.surRDV = surRDV;
+            this.heureArrivee = heureArrivee;
+            this.heureDebut = heureDebut;
+            this.heureDepart = heureDepart;
+            this.nomMedecin = nomMedecin;
+        }
+
 
         public void afficher()
         {

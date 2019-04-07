@@ -11,7 +11,7 @@
         <StackPanel>
             <Label Content="Liste des Cabinets" FontSize="24" Foreground="#FF1976D2" FontWeight="Bold" Margin="447,20,351.6,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <StackPanel>
-                <ListView x:Name="CabinetListView" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" MinWidth="660" MaxWidth="660" Margin="210,0,0,0" >
+                <ListView x:Name="CabinetListView" HorizontalAlignment="Left" Height="453" VerticalAlignment="Top" Margin="270,0,0,0" Width="580" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="N°"  DisplayMemberBinding="{Binding numero}"/>
@@ -19,6 +19,13 @@
                             <GridViewColumn Header="Ville"  DisplayMemberBinding="{Binding ville}"/>
                             <GridViewColumn Header="Region"  DisplayMemberBinding="{Binding nomRegion}"/>
                             <GridViewColumn Header="Departement"  DisplayMemberBinding="{Binding nomDepartement}"/>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Modifier" Click="EditCabinet" CommandParameter="{Binding}" Background="#FFE2A92D" BorderBrush="#FFEABE5E"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -29,7 +36,8 @@
             <materialDesign:DialogHost.DialogContent >
                 <Grid Width="300"  Height="370">
                     <StackPanel>
-                        <Label x:Name="DialogCabinetTitle" FontSize="24" Margin="50,25,40,20" Content="Ajouter un Cabinet" />
+                        <Label x:Name="idCabinetLabel" Visibility="Collapsed" />
+                        <Label x:Name="DialogCabinetTitle" FontSize="24" Margin="40,25,40,20" Content="Ajouter un Cabinet" Width="300"/>
                         <StackPanel Orientation="Horizontal" Margin="5,25,5,0">
                             <TextBox Name="numeroCabinetTextBox" materialDesign:HintAssist.Hint="Numero" MaxWidth="131" Width="131" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4" />
                             <TextBox x:Name="rueCabinetTextBox" Margin="20,0,0,0" MaxWidth="131" Width="131" materialDesign:HintAssist.Hint="Rue" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" CaretBrush="#FF466DB4"/>
@@ -45,17 +53,18 @@
                         <!--BOUTONS-->
                         <StackPanel Orientation="Horizontal" Margin="0,30,0,30" Height="50">
                             <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Retour"/>
-                            <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Click="ButtonAjouterCabinet_Click"  Height="Auto" Width="150" Content="Ajouter"/>
+                            <Button x:Name="AjouterDialogButton" IsDefault="True" Click="ButtonClick_AjouterCabinet" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Height="Auto" Width="150" Content="Ajouter" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
+                            <Button x:Name="ModifierDialogButton" IsDefault="True" Visibility="Collapsed" Click="ButtonClick_ModifierCabinet" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Modifier"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
             </materialDesign:DialogHost.DialogContent>
             <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                            ToolTip="MaterialDesignFloatingActionLightButton" Margin="913,448,41,36" Background="#FF557FF0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                            ToolTip="MaterialDesignFloatingActionLightButton" Margin="913,448,41,36" Background="#FF557FF0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Click="ButtonClick_AjouterCabinetDialog">
 
                 <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
             </Button>
         </materialDesign:DialogHost>
-        
+
     </Grid>
 </UserControl>

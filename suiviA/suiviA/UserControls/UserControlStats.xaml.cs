@@ -29,10 +29,10 @@ namespace suiviA.UserControls
             UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
             Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll(_user);
             Utilisateurs listeVisiteurs = repoUtilisateur.GetVisiteurAll(_user);
-            afficherMedecins(listeMedecins, listeVisiteurs);
+            affichageComboBoxes(listeMedecins, listeVisiteurs);
         }
 
-        public void afficherMedecins(Utilisateurs listeMedecins, Utilisateurs listeVisiteurs)
+        public void affichageComboBoxes(Utilisateurs listeMedecins, Utilisateurs listeVisiteurs)
         {
             if ((listeMedecins.ListeUtilisateurs != null) || (listeVisiteurs.ListeUtilisateurs != null))
             {
@@ -85,11 +85,17 @@ namespace suiviA.UserControls
         private void VisiteurComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             get_NombreVisiteParVisiteurParJour();
+            get_NbVisitesParJourParMedecin();
+            get_DureeVisite();
+            get_AttenteMoy();
         }
 
         private void JourVisiteVisiteurDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             get_NombreVisiteParVisiteurParJour();
+            get_NbVisitesParJourParMedecin();
+            get_DureeVisite();
+            get_AttenteMoy();
         }
 
         #endregion
@@ -110,7 +116,7 @@ namespace suiviA.UserControls
                 StatRequestRepository repoStats = new StatRequestRepository();
                 StatRequest statRequest = new StatRequest("GetVisiteMedecin", idMedecin, DateTime.Parse(debutPeriode), DateTime.Parse(finPeriode));
 
-                int nombreVisitesParJourParMedecin = repoStats.RequeteStat(statRequest, _user);
+                int nombreVisitesParJourParMedecin = repoStats.RequeteStat_GetVisiteMedecin(statRequest, _user);
                 NbVisitesMedecinLabel.Content = nombreVisitesParJourParMedecin.ToString();
             }
         }
@@ -125,8 +131,38 @@ namespace suiviA.UserControls
                 StatRequestRepository repoStats = new StatRequestRepository();
                 StatRequest statRequest = new StatRequest("GetVisiteVisiteur", idVisiteur, DateTime.Parse(JourVisiteVisiteurDatePicker.Text));
 
-                int nombreVisitesParVisiteurParJour = repoStats.RequeteStat(statRequest, _user);
-                TempsMoyenEntretienLabel.Content = nombreVisitesParVisiteurParJour.ToString();
+                int nombreVisitesParVisiteurParJour = repoStats.RequeteStat_GetVisiteVisiteur(statRequest, _user);
+                nombreVisiteParVisiteurParJourLabel.Content = nombreVisitesParVisiteurParJour.ToString();
+            }
+        }
+
+        private void get_DureeVisite()
+        {
+            if(VisiteurComboBox.Text != string.Empty && JourVisiteVisiteurDatePicker.Text != null)
+            {
+                Utilisateur visiteur = (Utilisateur)VisiteurComboBox.SelectedItem;
+                int idVisiteur = visiteur.id;
+
+                StatRequestRepository repoStats = new StatRequestRepository();
+                StatRequest statRequest = new StatRequest("GetDureeVisite", idVisiteur, DateTime.Parse(JourVisiteVisiteurDatePicker.Text));
+
+                DateTime dureeVisite = repoStats.RequeteStat_GetAttenteMoy(statRequest, _user);
+                TempsMoyenVisiteLabel.Content = dureeVisite.ToString("HH:mm");
+            }
+        }
+
+        private void get_AttenteMoy()
+        {
+            if (VisiteurComboBox.Text != string.Empty && JourVisiteVisiteurDatePicker.Text != null)
+            {
+                Utilisateur visiteur = (Utilisateur)VisiteurComboBox.SelectedItem;
+                int idVisiteur = visiteur.id;
+
+                StatRequestRepository repoStats = new StatRequestRepository();
+                StatRequest statRequest = new StatRequest("GetAttenteMoy", idVisiteur, DateTime.Parse(JourVisiteVisiteurDatePicker.Text));
+
+                DateTime tempAttenteMoyen = repoStats.RequeteStat_GetAttenteMoy(statRequest, _user);
+                TempsAttenteMoyenLabel.Content = tempAttenteMoyen.ToString("HH:mm");
             }
         }
 

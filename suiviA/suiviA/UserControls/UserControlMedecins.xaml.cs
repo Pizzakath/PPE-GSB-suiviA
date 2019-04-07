@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -43,44 +44,129 @@ namespace suiviA.UserControls
         {
             if(listeMedecins.ListeUtilisateurs != null)
             {
+                ObservableCollection<Utilisateur> listMedecins = new ObservableCollection<Utilisateur>();
                 foreach(Utilisateur el in listeMedecins.ListeUtilisateurs)
                 {
-                    DoctorListView.Items.Add(new Utilisateur(
+                    Utilisateur medecin = new Utilisateur(
                         el.id,
-                        el.nom, 
-                        el.prenom, 
-                        el.identifiant, 
-                        el.password, 
-                        el.telephone, 
-                        el.mail, 
-                        int.Parse(el.type.ToString())));
+                        el.nom,
+                        el.prenom,
+                        el.identifiant,
+                        el.password,
+                        el.telephone,
+                        el.mail,
+                        int.Parse(el.type.ToString())
+                    );
+
+                    listMedecins.Add(medecin);
                 }
+
+                DoctorListView.ItemsSource = listMedecins;
             }
+
+            ObservableCollection<Cabinet> listCabinets = new ObservableCollection<Cabinet>();
             foreach(Cabinet el in listeCabinets.ListeCabinet)
             {
-                cabinetComboBox.Items.Add(new Cabinet(
+                Cabinet cabinet = new Cabinet(
                     el.id,
                     el.numero,
                     el.rue,
                     el.ville,
                     el.nomRegion,
                     el.nomDepartement
-                    ).ToString());
+                );
+                listCabinets.Add(cabinet);
             }
+            cabinetComboBox.ItemsSource = listCabinets;
         }
 
-        // Pas possible de créer un utilisateur Médecin avec nom/prénom/cabinet, 
-        // Donc pas d'implémentation de la fonctionnalité
+        private void EditMedecin(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            Utilisateur medecin = b.CommandParameter as Utilisateur;
 
-        //private void ButtonClick_AjouterMedecin(object sender, RoutedEventArgs e)
-        //{
-        //    string newMedecinNom = nomMedecinTextBox.Text;
-        //    string newMedecinPrenom = prenomMedecinTextBox.Text;
+            // Ouvrir le DialogHost
+            medecinDialogHost.IsOpen = true;
+            DoctorDialogTitle.Content = "Modifier un Medecin";
+            DoctorDialogTitle.Width = 230;
+            cabinetComboBox.Visibility = Visibility.Collapsed;
 
-        //    Utilisateur nouveauMedecin = new Utilisateur(newMedecinNom)
+            AjouterDialogButton.Visibility = Visibility.Collapsed;
+            ModifierDialogButton.Visibility = Visibility.Visible;
 
-        //}
+
+            // Afficher les infos
+            idDoctorLabel.Content = medecin.id;
+            cabinetComboBox.SelectedItem = medecin.cabinet;
+            nomMedecinTextBox.Text = medecin.nom;
+            prenomMedecinTextBox.Text = medecin.prenom;
+        }
 
 
+        private void ButtonClick_AjouterMedecinDialog(object sender, RoutedEventArgs e)
+        {
+            AjouterDialogButton.Visibility = Visibility.Visible;
+            ModifierDialogButton.Visibility = Visibility.Collapsed;
+
+            // Ouvrir le DialogHost
+            medecinDialogHost.IsOpen = true;
+            DoctorDialogTitle.Content = "Ajouter un Medecin";
+            DoctorDialogTitle.Width = 220;
+            cabinetComboBox.Visibility = Visibility.Visible;
+
+            cabinetComboBox.SelectedItem = "";
+            nomMedecinTextBox.Text = "";
+            prenomMedecinTextBox.Text = "";
+        }
+
+        public void ButtonClick_AjouterMedecin(object sender, RoutedEventArgs e)
+        {
+            Cabinet cabinet = (Cabinet)cabinetComboBox.SelectedItem;
+            int idCabinet = cabinet.id;
+            
+            int idVisiteur = _user.id;
+
+            Utilisateur nouveauMedecin = new Utilisateur(
+                0,
+                idCabinet,
+                nomMedecinTextBox.Text,
+                prenomMedecinTextBox.Text
+            );
+
+            UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
+            utilisateurRepository.CreateMedecin(nouveauMedecin, _user);
+
+            MessageBox.Show("Medecin créé !");
+            
+            Utilisateurs listeMedecins = utilisateurRepository.GetMedecinAll(_user);
+            CabinetRepository cabinetRepository = new CabinetRepository();
+            Cabinets listeCabinets = cabinetRepository.GetAll(_user);
+
+            afficherListe(listeMedecins, listeCabinets);
+
+        }
+
+        public void ButtonClick_ModifierMedecin(object sender, RoutedEventArgs e)
+        {
+            int idMedecin = int.Parse(idDoctorLabel.Content.ToString());
+            
+
+            Utilisateur medecinModif = new Utilisateur(
+                idMedecin,
+                nomMedecinTextBox.Text,
+                prenomMedecinTextBox.Text
+            );
+
+            UtilisateurRepository utilisateurRepository = new UtilisateurRepository();
+            utilisateurRepository.UpdateMedecin(medecinModif, _user);
+
+            MessageBox.Show("Medecin modifié !");
+
+            Utilisateurs listeMedecins = utilisateurRepository.GetMedecinAll(_user);
+            CabinetRepository cabinetRepository = new CabinetRepository();
+            Cabinets listeCabinets = cabinetRepository.GetAll(_user);
+
+            afficherListe(listeMedecins, listeCabinets);
+        }
     }
 }

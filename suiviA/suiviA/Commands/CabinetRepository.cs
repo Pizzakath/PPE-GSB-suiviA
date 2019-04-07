@@ -49,6 +49,14 @@ namespace suiviA.Commands
             restClient.Execute(req);
         }
 
+        public void UpdateCabinet(Cabinet cabinet, Utilisateur uCo)
+        {
+            RestRequest req = new RestRequest("api/cabinets/{token}", Method.PUT);
+            req.RequestFormat = DataFormat.Json;
+            req.AddUrlSegment("token", uCo.token);
+            req.AddJsonBody(JsonConvert.SerializeObject(cabinet));
+            restClient.Execute(req);
+        }
         public Cabinet GetCabinetByIdMedecin(int id, Utilisateur uCo)
         {
             // Id du medecin

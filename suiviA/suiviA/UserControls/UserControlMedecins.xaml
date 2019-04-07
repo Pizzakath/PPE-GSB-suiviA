@@ -11,13 +11,21 @@
         <StackPanel>
             <Label Content="Liste des Médecins" FontSize="24" Foreground="#FF1976D2" FontWeight="Bold" Margin="459,20,329.6,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <StackPanel>
-                <ListView x:Name="DoctorListView" HorizontalAlignment="Left" Height="478" VerticalAlignment="Top" MinWidth="660" MaxWidth="660" Margin="210,0,0,0" >
+                <ListView x:Name="DoctorListView" HorizontalAlignment="Left" Height="478" VerticalAlignment="Top" Margin="140,0,0,0" Width="780" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Nom"  DisplayMemberBinding="{Binding nom}"/>
                             <GridViewColumn Header="Prenom"  DisplayMemberBinding="{Binding prenom}"/>
+                            <GridViewColumn Header="Identifiant"  DisplayMemberBinding="{Binding identifiant}"/>
                             <GridViewColumn Header="mail"  DisplayMemberBinding="{Binding mail}"/>
                             <GridViewColumn Header="telephone"  DisplayMemberBinding="{Binding telephone}"/>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Modifier" Click="EditMedecin" CommandParameter="{Binding}" Background="#FFE2A92D" BorderBrush="#FFEABE5E"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -29,6 +37,7 @@
             <materialDesign:DialogHost.DialogContent >
                 <Grid Width="300" Height="275">
                     <StackPanel>
+                        <Label x:Name="idDoctorLabel" Visibility="Collapsed" />
                         <Label x:Name="DoctorDialogTitle" FontSize="24" Width="220" Margin="0,25,0,20" Content="Ajouter un Médecin"/>
                         <ComboBox x:Name="cabinetComboBox" materialDesign:HintAssist.Hint="Quel Cabinet ?" Width="250" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
                         <StackPanel Orientation="Horizontal" Margin="5,25,5,0">
@@ -39,13 +48,15 @@
                         <!--BOUTONS-->
                         <StackPanel Orientation="Horizontal" Margin="0,30,0,30" Height="50">
                             <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Left" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Retour"/>
-                            <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Ajouter"/>
+                            <Button x:Name="AjouterDialogButton" IsDefault="True" Click="ButtonClick_AjouterMedecin" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Ajouter"/>
+                            <Button x:Name="ModifierDialogButton" IsDefault="True" Visibility="Collapsed" Click="ButtonClick_ModifierMedecin" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Height="Auto" Width="150" Content="Modifier"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
             </materialDesign:DialogHost.DialogContent>
             <Button Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                            ToolTip="MaterialDesignFloatingActionLightButton" Margin="913,448,41,36" Background="#FF557FF0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                            ToolTip="MaterialDesignFloatingActionLightButton" Margin="913,448,41,36" Background="#FF557FF0" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                            Click="ButtonClick_AjouterMedecinDialog">
 
                 <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
             </Button>

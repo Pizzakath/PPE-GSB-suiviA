@@ -53,6 +53,10 @@ namespace suiviA.Commands
         [DeserializeAs(Name ="token")]
         public string token { get; set; }
 
+
+        [DeserializeAs(Name = "cabinet")]
+        public int cabinet { get; set; }
+
         public Utilisateur()
         {
 
@@ -97,6 +101,21 @@ string telephone, string mail, int type, string token)
             this.mail = mail;
             this.type = type;
             this.token = token;
+        }
+
+        public Utilisateur(int id, int cabinet, string nom, string prenom)
+        {
+            this.id = id;
+            this.cabinet = cabinet;
+            this.nom = nom;
+            this.prenom = prenom;
+        }
+
+        public Utilisateur(int id, string nom, string prenom)
+        {
+            this.id = id;
+            this.nom = nom;
+            this.prenom = prenom;
         }
 
         public void afficher()
