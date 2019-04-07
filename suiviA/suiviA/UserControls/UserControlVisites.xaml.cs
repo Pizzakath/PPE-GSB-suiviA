@@ -180,34 +180,70 @@ namespace suiviA.UserControls
 
         public void ButtonClick_AjouterVisite(object sender, RoutedEventArgs e)
         {
-            bool isRDV = rdvComboBox.Text == "Oui" ? true : false;
-            Utilisateur medecin = (Utilisateur)DoctorComboBox.SelectedItem;
-            int idMedecin = medecin.id;
+            if (ValidValues())
+            {
+                bool isRDV = rdvComboBox.Text == "Oui" ? true : false;
+                Utilisateur medecin = (Utilisateur)DoctorComboBox.SelectedItem;
+                int idMedecin = medecin.id;
 
-            int idVisiteur = _user.id;
-            Visite nouvelleViste = new Visite(
-                idVisiteur, 
-                idMedecin,
-                DateTime.Parse(dateVisiteDatePicker.Text),
-                isRDV,
-                DateTime.Parse(heureArriveeTimePicker.Text),
-                DateTime.Parse(heureDebutTimePicker.Text),
-                DateTime.Parse(heureDepartTimePicker.Text)
-            );
+                Visite nouvelleViste = new Visite(
+                    _user.id,
+                    idMedecin,
+                    DateTime.Parse(dateVisiteDatePicker.Text),
+                    isRDV,
+                    DateTime.Parse(heureArriveeTimePicker.Text),
+                    DateTime.Parse(heureDebutTimePicker.Text),
+                    DateTime.Parse(heureDepartTimePicker.Text)
+                );
 
-            VisiteRepository visiteRepository = new VisiteRepository();
-            visiteRepository.CreateVisite(nouvelleViste, _user);
+                VisiteRepository visiteRepository = new VisiteRepository();
+                visiteRepository.CreateVisite(nouvelleViste, _user);
 
-            MessageBox.Show("Visite créée");
+                MessageBox.Show("Visite créée");
 
-            Visites listeVisites = visiteRepository.GetVisiteAllByIdVisiteur(_user.id, _user);
-            UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
-            Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll(_user);
-            afficherListe(listeVisites.ListeVisites, listeMedecins);
 
+                Visites listeVisites = visiteRepository.GetVisiteAllByIdVisiteur(_user.id, _user);
+                UtilisateurRepository repoUtilisateur = new UtilisateurRepository();
+                Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll(_user);
+                afficherListe(listeVisites.ListeVisites, listeMedecins);
+            }
+            else
+            {
+                VisiteDialogHost.IsOpen = true;
+            }
 
         }
 
+        //public bool ValidValues()
+        //{
+        //    //Utilisateur medecin = (Utilisateur)DoctorComboBox.SelectedItem;
+        //    //DateTime dateVisite = DateTime.Parse(dateVisiteDatePicker.Text);
+        //    //heureDebutTimePicker
+        //    //DateTime heureDepart = DateTime.Parse(heureDepartTimePicker.Text);
+
+        //    if(medecin == null)
+        //    {
+        //        MessageBox.Show("Sélectionnez un médecin");
+        //        return false;
+        //    }
+        //    if (dateVisite == null)
+        //    {
+        //        MessageBox.Show("Il faut spécifier la date de visite.");
+        //        return false;
+        //    }
+        //    else if ((heureDebut == null) && (heureDepart != null))
+        //    {
+        //        MessageBox.Show("Vous ne pouvez pas renseigner d'heure de départ si une heure 'arrivée n'est pas spécifiée.");
+        //        return false;
+        //    }
+        //    else if (heureDepart < heureDebut)
+        //    {
+        //        MessageBox.Show("Erreur : l'heure de départ du cabinet doit être supérieure à celle de début d'entretien.");
+        //        return false;
+        //    }
+            
+        //    return true;
+        //}
         public void ButtonClick_ModifierVisite(object sender, RoutedEventArgs e)
         {
             int idVisite = int.Parse(idVisiteLabel.Content.ToString());

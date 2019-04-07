@@ -48,7 +48,12 @@
                     <StackPanel>
                         <Label x:Name="idVisiteLabel"  Visibility="Collapsed" />
                         <Label x:Name="VisiteDialogTitle" FontSize="24" Width="200" Margin="0,25,0,20">Ajouter une visite</Label>
-                        <ComboBox x:Name="DoctorComboBox" materialDesign:HintAssist.Hint="Quel Médecin ?" Width="250" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                        <ComboBox x:Name="DoctorComboBox" materialDesign:HintAssist.Hint="Quel Médecin ?" Width="250" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <Binding UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </ComboBox>
                         <StackPanel Orientation="Horizontal" Margin="5,25,5,0">
                             <DatePicker x:Name="dateVisiteDatePicker" Width="131" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Date de Visite" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Language="Fr" />
                             <materialDesign:TimePicker x:Name="heureArriveeTimePicker" Is24Hours="True" Width="131" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Heure d'arrivée" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Margin="20,0,0,0" />
