@@ -47,7 +47,7 @@ namespace suiviA.UserControls
                 ColHeaderMedecin.Width = double.NaN;
                 ColHeaderVisiteur.Width = 0;
                 Visites listeVisites = repoVisite.GetVisiteAllByIdVisiteur(_user.id, _user);
-                Utilisateurs listeMedecins = repoUtilisateur.GetMedecinAll(_user);
+                Utilisateurs listeMedecins = repoUtilisateur.GetMedecinVisiteur(_user.id, _user);
                 afficherListe(listeVisites.ListeVisites, listeMedecins);
             }
 
